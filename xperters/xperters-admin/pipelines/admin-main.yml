@@ -1,0 +1,74 @@
+name: $(Year:yyyy).$(Month).$(DayOfMonth)$(Rev:.r)
+trigger:
+- master
+- releases/*
+- hotfix/*
+- bugfix/*
+
+resources:
+  repositories:    
+  - repository: self    
+  - repository: libraries
+    type: git
+    name: xperters/xperters-libraries
+    ref: master
+
+variables:
+  solution: '**\xperters.admin.sln'
+  organisation: mercle
+  imageRepositoryWeb: xperters-admin-api
+  dockerfileWebPath: $(Build.SourcesDirectory)/xperters-admin/src/Dockerfile.CI
+  tagBuildId: $(Build.BuildId)
+  tagBuildNumber: $(Build.BuildNumber)  
+  solutionName: xperters.admin
+  BuildPlatform: any cpu
+  tenantId: e44f8830-b7ca-47c4-bbc3-08c463254b99
+  uiZipFileName: Xperters.Admin.UI-$(Build.BuildNumber).zip
+  kubectlversion: 1.19.1
+  vstsPool: Windows
+  dockerRegistryServiceConnection: mercle
+  adAuthority: https://login.microsoftonline.com/$(tenantId)
+
+  ${{ if eq( variables['Build.SourceBranchName'], 'master' ) }}: 
+    BuildConfiguration: Release
+
+  ${{ if ne( variables['Build.SourceBranchName'], 'master' ) }}: 
+    BuildConfiguration: D-No-Nugets
+
+stages:
+- stage: Build
+  variables:
+  - group: mercle-prd
+  jobs:
+  - template: templates/build/job-buildnumber.yml
+  - template: templates/build/job-build.yml
+  - template: templates/build/job-build-image.yml
+
+- stage: DEV
+  displayName: DEV
+  dependsOn: Build
+  variables:
+  - group: mercle-prd
+  - group: xperters-dev
+  - name: subscription
+    value: XPERTERS-DEV
+  - name: environment
+    value: dev
+  - name: resourcegroup
+    value: xperters-$(environment)
+  - name: application
+    value: xperters
+  - name: database
+    value: xperters-$(environment)-01
+  - name: apiAddress
+    value: https://admin-$(environment).xperters.com/api/
+
+  jobs:
+  - template: templates/jobs.yml
+    parameters:
+      subscription: ${{variables.subscription}}
+      environment: ${{variables.environment}}
+      resourcegroup: ${{variables.resourcegroup}}
+      application: ${{variables.application}}
+      database: ${{variables.database}}
+      instanceLocations: [eastus2]

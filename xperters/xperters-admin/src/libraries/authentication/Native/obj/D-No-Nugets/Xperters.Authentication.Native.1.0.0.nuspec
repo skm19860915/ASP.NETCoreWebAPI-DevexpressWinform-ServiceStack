@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>Xperters.Authentication.Native</id>
+    <version>1.0.0</version>
+    <authors>Xperters.Authentication.Native</authors>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Contains classes that aid to Authenticate users from Native applications including WinForms, WPF, and Excel</description>
+    <dependencies>
+      <group targetFramework=".NETFramework4.7.1">
+        <dependency id="Microsoft.IdentityModel.Clients.ActiveDirectory" version="4.4.2" exclude="Build,Analyzers" />
+      </group>
+    </dependencies>
+    <frameworkAssemblies>
+      <frameworkAssembly assemblyName="System.Configuration" targetFramework=".NETFramework4.7.1" />
+      <frameworkAssembly assemblyName="System.Security" targetFramework=".NETFramework4.7.1" />
+    </frameworkAssemblies>
+  </metadata>
+  <files>
+    <file src="G:\xperters\xperters-admin\src\libraries\authentication\Native\bin\D-No-Nugets\net471\Xperters.Authentication.Native.dll" target="lib\net471\Xperters.Authentication.Native.dll" />
+  </files>
+</package>

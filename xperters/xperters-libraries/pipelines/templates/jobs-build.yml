@@ -1,0 +1,271 @@
+parameters:
+  buildconfiguration: ''
+  buildarguments: ''
+  packarguments: ''
+
+jobs:
+- job: PackagesAndTests
+  displayName: Build packages
+  pool:
+    name: Windows
+  steps:
+  - checkout: self
+  - powershell: |
+        $BuildNumber="$(Build.BuildNumber)";
+        $Branch = "$(Build.SourceBranchName)";
+        $Configuration = "${{parameters.buildconfiguration}}";
+          
+          If (-Not ($Branch  -eq 'master'))
+          {
+            $suffix = $Branch;
+    
+            echo "##vso[build.updatebuildnumber]$($BuildNumber)-$($suffix)"
+          }
+    displayName: Update build number
+  - task: UseDotNet@2
+    displayName: Use .Net Core sdk 3.1.x
+    inputs:
+      version: 3.1.x
+
+  - task: bleddynrichards.Assembly-Info-Task.Assembly-Info-NetCore.Assembly-Info-NetCore@2
+    displayName: Set Assembly Manifest Data
+
+  - task: DotNetCoreCLI@2
+    displayName: restore
+    inputs:
+      command: restore
+      feedsToUse: config      
+      projects: src/xperters-libraries.sln
+      nugetConfigPath: src/nuget.config
+      verbosityRestore: Normal
+
+  - task: DotNetCoreCLI@2
+    displayName: build
+    inputs:
+      command: build
+      publishWebProjects: false
+      projects: src/xperters-libraries.sln
+      arguments: ${{parameters.buildarguments}}
+      modifyOutputPath: false
+      
+  - task: DotNetCoreCLI@2
+    displayName: pack azuread
+    inputs:
+      command: pack
+      packagesToPack: src/azuread
+      versioningScheme: byEnvVar
+      versionEnvVar: Build_BuildNumber
+      verbosityPack: Minimal
+      arguments: ${{parameters.packarguments}}
+
+  - task: DotNetCoreCLI@2
+    displayName: pack business
+    inputs:
+      command: pack
+      packagesToPack: src/business
+      versioningScheme: byEnvVar
+      versionEnvVar: Build_BuildNumber
+      verbosityPack: Minimal
+      arguments: ${{parameters.packarguments}}
+
+  - task: DotNetCoreCLI@2
+    displayName: pack configurations
+    inputs:
+      command: pack
+      packagesToPack: src/configurations
+      versioningScheme: byEnvVar
+      versionEnvVar: Build_BuildNumber
+      verbosityPack: Minimal
+      arguments: ${{parameters.packarguments}}
+
+  - task: DotNetCoreCLI@2
+    displayName: pack constants
+    inputs:
+      command: pack
+      packagesToPack: src/constants
+      versioningScheme: byEnvVar
+      versionEnvVar: Build_BuildNumber
+      verbosityPack: Minimal
+      arguments: ${{parameters.packarguments}}
+
+  - task: DotNetCoreCLI@2
+    displayName: pack domain
+    inputs:
+      command: pack
+      packagesToPack: src/domain
+      versioningScheme: byEnvVar
+      versionEnvVar: Build_BuildNumber
+      verbosityPack: Minimal
+      arguments: ${{parameters.packarguments}}
+
+  - task: DotNetCoreCLI@2
+    displayName: pack email
+    inputs:
+      command: pack
+      packagesToPack: src/email
+      versioningScheme: byEnvVar
+      versionEnvVar: Build_BuildNumber
+      verbosityPack: Minimal
+      arguments: ${{parameters.packarguments}}
+
+  - task: DotNetCoreCLI@2
+    displayName: pack encryption
+    inputs:
+      command: pack
+      packagesToPack: src/encryption
+      versioningScheme: byEnvVar
+      versionEnvVar: Build_BuildNumber
+      verbosityPack: Minimal
+      arguments: ${{parameters.packarguments}}
+
+  - task: DotNetCoreCLI@2
+    displayName: pack entities
+    inputs:
+      command: pack
+      packagesToPack: src/entities
+      versioningScheme: byEnvVar
+      versionEnvVar: Build_BuildNumber
+      verbosityPack: Minimal
+      arguments: ${{parameters.packarguments}}
+
+  - task: DotNetCoreCLI@2
+    displayName: pack enums
+    inputs:
+      command: pack
+      packagesToPack: src/enums
+      versioningScheme: byEnvVar
+      versionEnvVar: Build_BuildNumber
+      verbosityPack: Minimal
+      arguments: ${{parameters.packarguments}}
+      
+  - task: DotNetCoreCLI@2
+    displayName: pack extensions
+    inputs:
+      command: pack
+      packagesToPack: src/extensions
+      versioningScheme: byEnvVar
+      versionEnvVar: Build_BuildNumber
+      verbosityPack: Minimal
+      arguments: ${{parameters.packarguments}}
+
+  - task: DotNetCoreCLI@2
+    displayName: pack fileio
+    inputs:
+      command: pack
+      packagesToPack: src/fileio
+      versioningScheme: byEnvVar
+      versionEnvVar: Build_BuildNumber
+      verbosityPack: Minimal
+      arguments: ${{parameters.packarguments}}
+
+  - task: DotNetCoreCLI@2
+    displayName: pack fileutilities
+    inputs:
+      command: pack
+      packagesToPack: src/fileutilities
+      versioningScheme: byEnvVar
+      versionEnvVar: Build_BuildNumber
+      verbosityPack: Minimal
+      arguments: ${{parameters.packarguments}}
+
+  - task: DotNetCoreCLI@2
+    displayName: pack http
+    inputs:
+      command: pack
+      packagesToPack: src/http
+      versioningScheme: byEnvVar
+      versionEnvVar: Build_BuildNumber
+      verbosityPack: Minimal
+      arguments: ${{parameters.packarguments}}
+
+  - task: DotNetCoreCLI@2
+    displayName: pack infrastructure
+    inputs:
+      command: pack
+      packagesToPack: src/infrastructure
+      versioningScheme: byEnvVar
+      versionEnvVar: Build_BuildNumber
+      verbosityPack: Minimal
+      arguments: ${{parameters.packarguments}}
+
+  - task: DotNetCoreCLI@2
+    displayName: pack models
+    inputs:
+      command: pack
+      packagesToPack: src/models
+      versioningScheme: byEnvVar
+      versionEnvVar: Build_BuildNumber
+      verbosityPack: Minimal
+      arguments: ${{parameters.packarguments}}
+
+  - task: DotNetCoreCLI@2
+    displayName: pack payments
+    inputs:
+      command: pack
+      packagesToPack: src/payments
+      versioningScheme: byEnvVar
+      versionEnvVar: Build_BuildNumber
+      verbosityPack: Minimal
+      arguments: ${{parameters.packarguments}}
+
+  - task: DotNetCoreCLI@2
+    displayName: pack mockdata
+    inputs:
+      command: pack
+      packagesToPack: src/mockdata
+      versioningScheme: byEnvVar
+      versionEnvVar: Build_BuildNumber
+      verbosityPack: Minimal
+      arguments: ${{parameters.packarguments}}
+   
+  - task: DotNetCoreCLI@2
+    displayName: pack queues
+    inputs:
+      command: pack
+      packagesToPack: src/queues
+      versioningScheme: byEnvVar
+      versionEnvVar: Build_BuildNumber
+      verbosityPack: Minimal
+      arguments: ${{parameters.packarguments}}
+
+  - task: DotNetCoreCLI@2
+    displayName: pack repositories
+    inputs:
+      command: pack
+      packagesToPack: src/repositories
+      versioningScheme: byEnvVar
+      versionEnvVar: Build_BuildNumber
+      verbosityPack: Minimal
+      arguments: ${{parameters.packarguments}}
+      
+  - task: DotNetCoreCLI@2
+    displayName: pack requestheaders
+    inputs:
+      command: pack
+      packagesToPack: src/requestheaders
+      versioningScheme: byEnvVar
+      versionEnvVar: Build_BuildNumber
+      verbosityPack: Minimal
+      arguments: ${{parameters.packarguments}}
+
+  - task: DotNetCoreCLI@2
+    displayName: Push nugets to feed
+    inputs:
+      command: push
+      packagesToPush: '$(Build.ArtifactStagingDirectory)/xperters.*.nupkg'
+      publishVstsFeed: d972fa95-b233-4af0-b85a-225476c1661e
+  # - task: ArchiveFiles@2
+  #   displayName: Create artifacts zip
+  #   inputs:
+  #     rootFolderOrFile: src\**\bin\${{parameters.buildconfiguration}}
+  #     includeRootFolder: false
+  #     archiveType: zip
+  #     archiveFile: '$(Build.ArtifactStagingDirectory)\zipfiles\xperters.packages.zip'
+  #     replaceExistingArchive: true
+
+  # - task: PublishBuildArtifacts@1
+  #   displayName: Publish Artifact to drop folder
+  #   inputs:
+  #     PathtoPublish: '$(build.artifactstagingdirectory)\zipfiles'      
+      
+

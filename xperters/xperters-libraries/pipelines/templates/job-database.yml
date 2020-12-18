@@ -1,0 +1,139 @@
+parameters:
+    accesstoken: ''
+    sqlservername: ''
+    mockConnection: ''
+    mockUserData: ''
+    storageConnectionString: ''
+    storageBaseUrl: ''
+    databaseConnectionString: ''
+    environment: ''
+  
+steps:
+- checkout: self
+- download: none
+- task: DownloadPipelineArtifact@2
+  displayName: Download pipeline artifacts
+  inputs:
+    buildType: current
+    itemPattern: '**/a.zip'
+    path: '$(System.ArtifactsDirectory)'
+
+- task: ExtractFiles@1
+  displayName: Extract build artifacts
+  inputs:
+    archiveFilePatterns: '$(System.ArtifactsDirectory)\XpertersEF\a.zip'
+    destinationFolder: '$(System.ArtifactsDirectory)\XpertersEFExtracted'
+    cleanDestinationFolder: false
+
+- task: setjsonvalue@1
+  displayName: Update db connection string in json file
+  inputs:
+    filename: '$(System.ArtifactsDirectory)/XpertersEFExtracted/appsettings.json'
+    numberOfLevels: 2
+    keyname1: Database
+    keyname2: DatabaseConnectionString
+    valueToSet: ${{parameters.databaseConnectionString}}
+
+- task: setjsonvalue@1
+  displayName: Update key vault name in json file
+  inputs:
+    filename: '$(System.ArtifactsDirectory)/XpertersEFExtracted/appsettings.json'
+    numberOfLevels: 2
+    keyname1: KeyVault
+    keyname2: Name
+    valueToSet: $(application)-${{parameters.environment}}
+
+- task: setjsonvalue@1
+  displayName: Update key version in json file
+  inputs:
+    filename: '$(System.ArtifactsDirectory)/XpertersEFExtracted/appsettings.json'
+    numberOfLevels: 2
+    keyname1: KeyVault
+    keyname2: KeyVersion
+    valueToSet: $(keyversion-SQLCMK)
+
+- task: setjsonvalue@1
+  displayName: Set MockConnections in json file
+  inputs:
+    filename: '$(System.ArtifactsDirectory)/XpertersEFExtracted/appsettings.json'
+    numberOfLevels: 2
+    keyname1: Settings
+    keyname2: MockConnections
+    valueToSet: ${{parameters.mockConnection}}
+
+- task: setjsonvalue@1
+  displayName: 'Set MockUserData in json file'
+  inputs:
+    filename: '$(System.ArtifactsDirectory)/XpertersEFExtracted/appsettings.json'
+    numberOfLevels: 2
+    keyname1: Settings
+    keyname2: MockUserData
+    valueToSet: ${{parameters.mockUserData}}
+
+- task: setjsonvalue@1
+  displayName: 'Set storage account uri in json file'
+  inputs:
+    filename: '$(System.ArtifactsDirectory)/XpertersEFExtracted/appsettings.json'
+    numberOfLevels: 2
+    keyname1: Storage
+    keyname2: BaseUrl
+    valueToSet: ${{parameters.storageBaseUrl}}
+
+- task: setjsonvalue@1
+  displayName: 'Set storage account connection string in json file'
+  inputs:
+    filename: '$(System.ArtifactsDirectory)/XpertersEFExtracted/appsettings.json'
+    numberOfLevels: 2
+    keyname1: Storage
+    keyname2: ConnectionString
+    valueToSet: ${{parameters.storageConnectionString}}
+
+
+- task: setjsonvalue@1
+  displayName: 'Set app reg client id in json file'
+  inputs:
+    filename: '$(System.ArtifactsDirectory)/XpertersEFExtracted/appsettings.json'
+    numberOfLevels: 3
+    keyname1: Authentication
+    keyname2: AzureAdAppReg
+    keyname3: ClientIdSql
+    valueToSet: $(applicationidsql)
+
+- task: setjsonvalue@1
+  displayName: 'Set app reg client secret in json file'
+  inputs:
+    filename: '$(System.ArtifactsDirectory)/XpertersEFExtracted/appsettings.json'
+    numberOfLevels: 3
+    keyname1: Authentication
+    keyname2: AzureAdAppReg
+    keyname3: ClientSecretSql
+    valueToSet: $(applicationsecretsql)
+
+- task: setjsonvalue@1
+  displayName: 'Set app reg tenantid in json file'
+  inputs:
+    filename: '$(System.ArtifactsDirectory)/XpertersEFExtracted/appsettings.json'
+    numberOfLevels: 3
+    keyname1: Authentication
+    keyname2: AzureAdAppReg
+    keyname3: TenantIdSql
+    valueToSet: $(tenantId)
+
+- task: setjsonvalue@1
+  displayName: Set application insights key
+  inputs:
+    filename: '$(System.ArtifactsDirectory)/XpertersEFExtracted/appsettings.json'
+    numberOfLevels: 2
+    keyname1: ApplicationInsights
+    keyname2: InstrumentationKey
+    valueToSet: $(applicationInsightsKey)
+
+- task: bendayconsulting.build-task.deployefcoremigrations.deployefcoremigrations@1
+  displayName: 'Deploy EF Core migrations'
+  inputs:
+    migrationsDll: '$(System.ArtifactsDirectory)/XpertersEFExtracted/xperters.entities.dll'
+    migrationsNamespace: xperters.entities
+    startupDll: '$(System.ArtifactsDirectory)/XpertersEFExtracted/Xperters.DBMigrator.dll'
+    depsJsonFile: '$(System.ArtifactsDirectory)/XpertersEFExtracted/Xperters.DBMigrator.deps.json'
+    runtimeConfigFile: '$(System.ArtifactsDirectory)/XpertersEFExtracted/Xperters.DBMigrator.runtimeconfig.json'
+    dbContextClassName: XpertersContext

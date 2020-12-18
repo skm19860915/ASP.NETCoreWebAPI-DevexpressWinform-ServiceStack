@@ -1,0 +1,33 @@
+jobs:
+- job: BuildImageApi
+  displayName: Build image - api
+  dependsOn: ChangeBuildNumber
+  pool:
+    name: Ubuntu
+  steps:
+  - checkout: self
+  - checkout: libraries 
+
+  - task: Docker@2
+    displayName: Build image - api
+    inputs:
+      command: build
+      repository: $(imageRepositoryWeb)
+      dockerfile: $(dockerfileWebPath)
+      buildContext: $(Build.SourcesDirectory)
+      containerRegistry: $(dockerRegistryServiceConnection)
+      arguments: '--build-arg PAT=$(PAT) --build-arg BuildConfiguration=$(BuildConfiguration)'
+      tags: |
+        $(tagBuildId)
+        $(tagBuildNumber)
+
+  - task: Docker@2
+    displayName: Push image
+    inputs:
+      command: push
+      repository: $(imageRepositoryWeb)
+      dockerfile: $(dockerfileWebPath)
+      containerRegistry: $(dockerRegistryServiceConnection)
+      tags: |
+        $(tagBuildId)
+        $(tagBuildNumber) 

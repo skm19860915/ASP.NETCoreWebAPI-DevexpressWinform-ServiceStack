@@ -1,0 +1,10 @@
+G:\xperters\xperters-admin\src\libraries\authentication\Native\bin\D-No-Nugets\net471\Xperters.Authentication.Native.dll
+G:\xperters\xperters-admin\src\libraries\authentication\Native\bin\D-No-Nugets\net471\Xperters.Authentication.Native.pdb
+G:\xperters\xperters-admin\src\libraries\authentication\Native\bin\D-No-Nugets\net471\Microsoft.IdentityModel.Clients.ActiveDirectory.dll
+G:\xperters\xperters-admin\src\libraries\authentication\Native\obj\D-No-Nugets\net471\Xperters.Authentication.Native.AssemblyInfoInputs.cache
+G:\xperters\xperters-admin\src\libraries\authentication\Native\obj\D-No-Nugets\net471\Xperters.Authentication.Native.AssemblyInfo.cs
+G:\xperters\xperters-admin\src\libraries\authentication\Native\obj\D-No-Nugets\net471\Xperters.Authentication.Native.csproj.CoreCompileInputs.cache
+G:\xperters\xperters-admin\src\libraries\authentication\Native\obj\D-No-Nugets\net471\Xperters.Authentication.Native.csproj.CopyComplete
+G:\xperters\xperters-admin\src\libraries\authentication\Native\obj\D-No-Nugets\net471\Xperters.Authentication.Native.dll
+G:\xperters\xperters-admin\src\libraries\authentication\Native\obj\D-No-Nugets\net471\Xperters.Authentication.Native.pdb
+G:\xperters\xperters-admin\src\libraries\authentication\Native\obj\D-No-Nugets\net471\Xperters.Authentication.Native.csprojAssemblyReference.cache

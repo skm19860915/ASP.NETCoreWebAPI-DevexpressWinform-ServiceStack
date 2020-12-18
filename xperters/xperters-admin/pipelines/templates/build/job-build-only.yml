@@ -1,0 +1,28 @@
+steps:
+- task: PowerShell@1
+  displayName: Set Branch Specific BuildNumber
+  inputs:
+    scriptType: inlineScript
+    inlineScript: |
+      Write-Output "##vso[build.updatebuildnumber]$($env:BUILD_BUILDNUMBER)-$($env:BUILD_SOURCEBRANCHNAME)"
+  condition: and(succeeded(), not(or(in(variables['Build.SourceBranch'], 'refs/heads/develop', 'refs/heads/master'),startsWith(variables['Build.SourceBranch'],'refs/heads/release'))))
+
+- task: NuGetToolInstaller@0
+  displayName: Use NuGet 5.8.0
+  inputs:
+    versionSpec: 5.8.0
+
+- task: NuGetCommand@2
+  displayName: Restore
+  inputs:
+    restoreSolution: $(solution)
+    feedsToUse: config
+    nugetConfigPath: src/nuget.config
+    verbosityRestore: Normal
+
+- task: VSBuild@1
+  displayName: Build
+  inputs:
+    solution: src/ui/xperters.admin.ui.csproj
+    platform: AnyCpu
+    configuration: $(BuildConfiguration)

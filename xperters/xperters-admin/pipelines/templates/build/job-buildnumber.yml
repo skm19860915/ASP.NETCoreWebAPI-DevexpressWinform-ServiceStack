@@ -1,0 +1,18 @@
+jobs:
+- job: ChangeBuildNumber
+  displayName: Change build number
+  pool:
+    name: $(vstsPool)
+  steps:
+  - powershell: |
+      $BuildNumber="$(Build.BuildNumber)";
+      $Branch = "$(Build.SourceBranchName)";
+      $Configuration = "$(BuildConfiguration)";
+      
+      If (-Not ($Branch  -eq 'master'))
+      {
+          $suffix = $Branch;
+
+          echo "##vso[build.updatebuildnumber]$($BuildNumber)-$($suffix)"
+      }
+    displayName: Update branch suffix

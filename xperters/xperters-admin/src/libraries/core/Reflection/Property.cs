@@ -1,0 +1,89 @@
+﻿using System;
+using System.Linq.Expressions;
+using System.Reflection;
+
+namespace Xperters.Core.Reflection
+{
+    public static class Property
+    {
+        /// <summary>
+        /// Extracts the property name from a property expression.
+        /// </summary>
+        /// <typeparam name="T">The object type containing the property specified in the expression.</typeparam>
+        /// <param name="propertyExpression">The property expression (e.g. () => PropertyName or () => DateTime.Now)</param>
+        /// <returns>The name of the property.</returns>
+        /// <exception cref="ArgumentNullException">Thrown if the <paramref name="propertyExpression"/> is null.</exception>
+        /// <exception cref="ArgumentException">Thrown when the expression is:<br/>
+        ///     Not a <see cref="MemberExpression"/><br/>
+        ///     The <see cref="MemberExpression"/> does not represent a property.<br/>
+        ///     Or, the property is static.
+        /// </exception>
+        public static string ExtractPropertyName<T>(Expression<Func<T>> propertyExpression)
+        {
+            if (propertyExpression == null)
+            {
+                throw new ArgumentNullException("propertyExpression");
+            }
+
+            var memberExpression = propertyExpression.Body as MemberExpression;
+            if (memberExpression == null)
+            {
+                throw new ArgumentException("The expression is not a member access expression", "propertyExpression");
+            }
+
+            var property = memberExpression.Member as PropertyInfo;
+            if (property == null)
+            {
+                throw new ArgumentException("The member access expression does not access a property", "propertyExpression");
+            }
+
+            return memberExpression.Member.Name;
+        }
+
+        /// <summary>
+        /// Extracts the property name from a property expression.
+        /// </summary>
+        /// <typeparam name="T">The object type containing the property specified in the expression.</typeparam>
+        /// <param name="propertyExpression">The property expression (e.g. p => p.PropertyName)</param>
+        /// <returns>The name of the property.</returns>
+        /// <exception cref="ArgumentNullException">Thrown if the <paramref name="propertyExpression"/> is null.</exception>
+        /// <exception cref="ArgumentException">Thrown when the expression is:<br/>
+        ///     Not a <see cref="MemberExpression"/><br/>
+        ///     The <see cref="MemberExpression"/> does not represent a property.<br/>
+        ///     Or, the property is static.
+        /// </exception>
+        public static string ExtractPropertyName<T>(Expression<Func<T, object>> propertyExpression)
+        {
+            if (propertyExpression == null)
+            {
+                throw new ArgumentNullException("propertyExpression");
+            }
+
+            MemberExpression memberExpression;
+            switch (propertyExpression.Body.NodeType)
+            {
+                case ExpressionType.Convert:
+                case ExpressionType.ConvertChecked:
+                {
+                    var unaryExpression = propertyExpression.Body as UnaryExpression;
+                    memberExpression = ((unaryExpression != null) ? unaryExpression.Operand : null) as MemberExpression;
+                    break;
+                }
+
+                default:
+                {
+                    memberExpression = propertyExpression.Body as MemberExpression;
+                    break;
+                }
+            }
+
+            if (memberExpression != null)
+            {
+                var propertyName = memberExpression.Member.Name;
+                return propertyName;
+            }
+
+            throw new ArgumentException("The expression is not valid (or not supported)", "propertyExpression");
+        }
+    }
+}

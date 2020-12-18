@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: xpertersadminapisettings
+  namespace: xperters  
+type: Opaque
+data:
+  storageconnectionstring: __storageconnectionstringbase64__
+  storagebaseurl: __storagebaseurlbase64__
+  storageaccountname: __storageaccountnamebase64__
+  keyvaultprotectionkeyurl: __keyvaultprotectionkeyurlbase64__  
+  dbconnectionstring: __dbconnectionstringbase64__
+  applicationinsightskey: __applicationinsightskeybase64__
+  azureadappregclientidsql: __azureadappregclientidsqlbase64__
+  azureadappregclientsecretsql: __azureadappregclientsecretsqlbase64__
+  azureadappregtenantidsql: __azureadappregtenantidsqlbase64__
+  azureaddomain: __azureaddomainbase64__
+  azureadtenantid: __azureadtenantidbase64__
+  azureadclientid: __azureadclientidbase64__
+  azureadclientsecret: __azureadclientsecretbase64__
+  azureadgroupsreaders: __azureadgroupsreadersbase64__
+  azureadgroupswriters: __azureadgroupswritersbase64__
+  azureadgroupsadmins: __azureadgroupsadminsbase64__
+  applicationresource: __applicationresourcebase64__
+

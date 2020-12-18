@@ -1,0 +1,37 @@
+name: $(Year:yyyy).$(Month).$(DayOfMonth)$(Rev:.r)
+trigger:
+- master
+- hotfix/*
+- release/*
+
+resources:
+  - repo: self    
+
+variables:
+  # Container registry service connection established during pipeline creation
+  sourcepath: $(System.DefaultWorkingDirectory)
+  application: xperters
+  framework: netcoreapp3.1
+
+stages:
+- stage: BuildDebug
+  displayName: Build (Debug)
+  condition: or(contains(variables['Build.SourceBranch'], 'feature'), contains(variables['Build.SourceBranch'], 'bugfix'))
+  jobs:
+  - template: templates/jobs-build.yml
+    parameters:
+      buildconfiguration: debug
+      buildarguments: '--configuration debug --no-restore'
+      packarguments: '--include-symbols --no-restore --no-build'
+
+- stage: BuildRelease
+  displayName: Build (Release)
+  dependsOn: []
+  condition: or(eq(variables['Build.SourceBranch'], 'refs/heads/master'), contains(variables['Build.SourceBranch'], 'refs/heads/releases/'), contains(variables['Build.SourceBranch'], 'refs/heads/hotfix/'))
+  jobs:
+  - template: templates/jobs-build.yml
+    parameters:
+      buildconfiguration: release
+      buildarguments: '--configuration release --no-restore'
+      packarguments: '--no-restore --no-build'
+

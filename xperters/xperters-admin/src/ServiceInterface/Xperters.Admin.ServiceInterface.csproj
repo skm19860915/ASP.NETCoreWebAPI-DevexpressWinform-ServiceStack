@@ -1,0 +1,33 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <Configurations>Debug;Release;D-No-Nugets</Configurations>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Validation\**" />
+    <EmbeddedResource Remove="Validation\**" />
+    <None Remove="Validation\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="ServiceStack" Version="5.9.2" />
+    <PackageReference Include="ServiceStack.Server" Version="5.9.2" />
+  </ItemGroup>
+
+	<ItemGroup Condition="'$(Configuration)' != 'D-No-Nugets'">
+		<PackageReference Include="xperters.business" Version="2020.12.11.1" />
+		<PackageReference Include="xperters.entities" Version="2020.12.11.1" />
+	</ItemGroup>
+
+	<ItemGroup Condition="'$(Configuration)'=='D-No-Nugets'">
+	  <ProjectReference Include="..\..\..\xperters-libraries\src\business\xperters.business.csproj" />
+	  <ProjectReference Include="..\..\..\xperters-libraries\src\entities\xperters.entities.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\libraries\authentication\Authentication\Xperters.Authentication.csproj" />
+	  <ProjectReference Include="..\ServiceModel\Xperters.Admin.ServiceModel.csproj" />
+	</ItemGroup>
+</Project>

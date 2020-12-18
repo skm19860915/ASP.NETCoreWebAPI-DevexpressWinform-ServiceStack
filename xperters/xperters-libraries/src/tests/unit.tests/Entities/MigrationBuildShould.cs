@@ -1,0 +1,47 @@
+using Microsoft.EntityFrameworkCore.Internal;
+using Microsoft.Extensions.Logging;
+using xperters.configurations;
+using xperters.entities;
+using xperters.extensions;
+using Xunit;
+
+namespace xperters.unit.tests.Entities
+{
+    public class MigrationBuildShould
+    {
+        [Fact]
+        public void HaveKeyVaultSettings(){
+
+            var handler = new EnvironmentHandler();
+            var env = handler.GetHostingEnvironment<MigrationSqlBuilder>();
+
+            var builder = new MigrationSqlBuilder(env);
+
+            Assert.True(builder.Config.KeyVaultSettings.Name.IsNotBlank());
+            Assert.True(builder.Config.KeyVaultSettings.KeyName.IsNotBlank());
+            Assert.True(builder.Config.KeyVaultSettings.KeyVersion.IsNotBlank());
+            Assert.True(builder.Config.KeyVaultSettings.KeyEncryptedValue.IsNotBlank());
+
+            Assert.Equal("xperters-local",builder.Config.KeyVaultSettings.Name);
+            Assert.Equal("SQLCMK", builder.Config.KeyVaultSettings.KeyName);
+            Assert.Equal("9988a8017da140d8a2416218cff333c3", builder.Config.KeyVaultSettings.KeyVersion);
+            Assert.Equal("0x01A6000001680074007400700073003A002F002F00780070006500720074006500720073002D006C006F00630061006C002E007600610075006C0074002E0061007A007500720065002E006E00650074002F006B006500790073002F00730071006C0063006D006B002F00320035006300350065003300650038003000380065003500340061006200660062006200380061006200380030003400360064003500660063006200320064003EA9800449FC5A2CED412D75CCEE7B4F1028443B87591E8809B3EEC637185F9DFC7C09F09F26E3DBD5F66CDC45A0DC5221DD978B8661F46239F186A013FD9C0FB36B077B8A75CED6B954D86B93E22021D8CF353208A4C2C2494E289969386F2E687D9608C5BECF408FEAC3B8D17CEB08A587881BD7534CC54CFEF909026BC73F126C05D70154EF450E6CC208329918A3A88E8F5E6718C50412B5D07D43BAE6FAB4A56915ACD9B53936FBB40CADABFBA68CEF3F43747A402E161104BAE9BCDA58B4203CD66BE8E05E8487CE9383C15F898C6430DA366684ECC100B671DCBB2B2A0159F45F16E7A6A708765DF384F4C1071B345B97D5A3659505E4469C02CE32A146A52AB1A15492B1C2D341FBB4E2636679E9E1C5B17ED854D6DED4BBF18CBE56E6E11A91B27EF82D199A99BC332DD6BECD66FCD2D1711B6697DEAD8B619478E78F2C3198DE804734C175D7ADF59552CA15A98894FFE7B36C60CB04E026321835C80B336ACF51153794D4542F64E2B365F12947E949E27B51DF652D1F07B4BDEDBBCC9181FF5582C0877C5ABF6836DC6269F190C25F6E6F4E5CFC0E56F57265B6E8031FC3E0CE31381D0F7517C3B50311EC89138E47C5B31A5CCA94635AFA8CD450F5FEB114482CB9A369F4D064075B40AF58513C6BF8AED0E1DFD5996A44ED94BFDECDBEA5066A1A5B9D843D068766D88212963DEDD6FA10BC0C66F320034EFB", builder.Config.KeyVaultSettings.KeyEncryptedValue);
+        }
+
+        [Fact]
+        public void HaveLoggerFactory()
+        {
+
+            var handler = new EnvironmentHandler();
+            var env = handler.GetHostingEnvironment<MigrationSqlBuilder>();
+
+            var builder = new MigrationSqlBuilder(env);
+
+            Assert.NotNull(builder.LoggerFactory);
+
+            var logger = builder.LoggerFactory.CreateLogger("MigrationBuildShould");
+            logger.LogDebug("Can call logger");
+
+        }
+    }
+}

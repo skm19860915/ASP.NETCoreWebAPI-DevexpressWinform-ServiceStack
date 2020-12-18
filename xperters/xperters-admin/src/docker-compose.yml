@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  xperters.admin.api:
+    image: ${DOCKER_REGISTRY-}xpertersadminapi
+    build:
+      context: .
+      dockerfile: api/Dockerfile

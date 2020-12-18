@@ -1,0 +1,9 @@
+G:\xperters\xperters-admin\src\libraries\core\bin\D-No-Nugets\netstandard2.0\Xperters.Core.deps.json
+G:\xperters\xperters-admin\src\libraries\core\bin\D-No-Nugets\netstandard2.0\Xperters.Core.dll
+G:\xperters\xperters-admin\src\libraries\core\bin\D-No-Nugets\netstandard2.0\Xperters.Core.pdb
+G:\xperters\xperters-admin\src\libraries\core\obj\D-No-Nugets\netstandard2.0\Xperters.Core.AssemblyInfoInputs.cache
+G:\xperters\xperters-admin\src\libraries\core\obj\D-No-Nugets\netstandard2.0\Xperters.Core.AssemblyInfo.cs
+G:\xperters\xperters-admin\src\libraries\core\obj\D-No-Nugets\netstandard2.0\Xperters.Core.csproj.CoreCompileInputs.cache
+G:\xperters\xperters-admin\src\libraries\core\obj\D-No-Nugets\netstandard2.0\Xperters.Core.dll
+G:\xperters\xperters-admin\src\libraries\core\obj\D-No-Nugets\netstandard2.0\Xperters.Core.pdb
+G:\xperters\xperters-admin\src\libraries\core\obj\D-No-Nugets\netstandard2.0\Xperters.Core.csprojAssemblyReference.cache

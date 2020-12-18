@@ -1,0 +1,72 @@
+parameters:
+  subscription: ''
+  environment: ''
+  database: ''
+  instanceLocations: []
+  
+jobs:
+- ${{ each location in parameters.instanceLocations}}:
+  - deployment: deploycontainersappsettings${{location}}
+    displayName: ${{location}} appsettings
+    pool:
+      name: Windows
+    variables:
+      dbconnectionstring: Server=tcp:$(sqlservername).database.windows.net,1433;Initial Catalog=$(sqlDatabaseName);Persist Security Info=False;User ID=$(sqldeployuser);Password=$(sqldeploypwd);MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;;Column Encryption Setting=Enabled;;Application Name=xperters-web
+      location: ${{location}}
+      keyvault: ${{parameters.application}}-${{parameters.environment}}
+    environment: ${{parameters.environment}}
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+          - template: container/job-container-appsettings.yml
+            parameters:
+              environment: ${{parameters.environment}}
+              resourcegroup: ${{parameters.resourceGroup}}
+              cluster: ${{parameters.application}}-${{location}}-${{parameters.environment}}-01
+              subscription: ${{parameters.subscription}}
+
+  - deployment: deploycontainersapi${{location}}
+    displayName: api ${{location}}
+    pool:
+      name: Ubuntu
+    variables:
+      dbconnectionstring: Server=tcp:$(sqlservername).database.windows.net,1433;Initial Catalog=$(sqlDatabaseName);Persist Security Info=False;User ID=$(sqldeployuser);Password=$(sqldeploypwd);MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;;Column Encryption Setting=Enabled;;Application Name=xperters-web
+      location: ${{location}}
+    dependsOn: deploycontainersappsettings${{location}}
+    environment: ${{parameters.environment}}
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+          - template: container/job-container-api.yml
+            parameters:
+              resourcegroup: ${{parameters.resourceGroup}}
+              cluster: ${{parameters.application}}-${{location}}-${{parameters.environment}}-01
+              subscription: ${{parameters.subscription}}
+              service: api
+
+- ${{ if ne('${{parameters.environment}}', 'local')}}:
+  - deployment: UpdateConfigAndUpload
+    displayName: Update UI config and upload
+    pool: 
+      name: Windows
+    variables:
+      xpertersAdmin:environment-name: ${{parameters.environment}}
+      xpertersAdmin:environment-version: $(Build.BuildNumber)
+      addin:apiServerBaseAddress: $(apiAddress)
+      AzureAd:Authority: $(adAuthority)
+      AzureAd:ClientId: $(applicationIdUI)
+      AzureAd:Resource: $(applicationResource)
+    environment: ${{parameters.environment}}
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+          - template: ui/job-ui-update-and-upload.yml
+            parameters:
+              environment: ${{parameters.environment}}
+              solutionName: ${{parameters.solutionName}}
+              subscription: ${{parameters.subscription}}
+
+        

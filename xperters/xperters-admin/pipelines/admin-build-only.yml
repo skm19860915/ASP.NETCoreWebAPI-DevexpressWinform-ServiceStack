@@ -1,0 +1,25 @@
+name: $(Year:yyyy).$(Month).$(DayOfMonth)$(Rev:.r)
+trigger:
+- feature/*
+- bugfix/*
+
+resources:
+  - repo: self    
+
+variables:
+  solution: '**\xperters.admin.sln'
+  organisation: mercle
+  solutionName: xperters.admin
+  BuildPlatform: any cpu
+  BuildConfiguration: Release
+  tenantId: e44f8830-b7ca-47c4-bbc3-08c463254b99
+
+stages:
+- stage: Build
+  jobs:
+  - job: Build
+    displayName: Build
+    pool: 
+      name: Windows
+    steps:
+    - template: templates/build/job-build-only.yml

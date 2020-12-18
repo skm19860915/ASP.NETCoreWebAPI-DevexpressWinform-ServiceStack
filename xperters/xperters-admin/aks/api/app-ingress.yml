@@ -1,0 +1,25 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: xperters-admin-api
+  namespace: xperters
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/rewrite-target: /$1
+    nginx.ingress.kubernetes.io/ssl-passthrough: "true"
+    nginx.ingress.kubernetes.io/proxy-buffering: "on"
+    nginx.ingress.kubernetes.io/proxy-buffer-size: "128k"
+    nginx.ingress.kubernetes.io/proxy-buffers-number: "4"      
+spec:
+  tls:
+  - hosts:
+    - admin-dev.xperters.com
+    secretName: xperters-ingress-tls
+  rules:
+  - host: admin-dev.xperters.com
+    http:
+      paths:
+      - backend:
+          serviceName: xpertersapisvc
+          servicePort: 80
+        path: /(.*)

@@ -1,0 +1,49 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <Configurations>Debug;Release;Debug-Mocks;D-No-Nugets</Configurations>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='D-No-Nugets|AnyCPU'">
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Remove="TestFiles\Bolivia-APER.xlsx" />
+    <None Remove="TestFiles\CLASS.xls" />
+    <None Remove="TestFiles\gre_research_validity_data.pdf" />
+    <None Remove="TestFiles\HandwashingWithAnanseBookCompressed.pdf" />
+    <None Remove="TestFiles\Lorem Ipsum.docx" />
+    <None Remove="TestFiles\pdf-sample.pdf" />
+    <None Remove="TestFiles\SampleXLSFile_904kb.xls" />
+    <None Remove="TestFiles\tests-example.xls" />
+    <None Remove="TestFiles\version6.doc" />
+    <None Remove="TestFiles\world_bank_data_catalog.xls" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="TestFiles\Bolivia-APER.xlsx" />
+    <EmbeddedResource Include="TestFiles\CLASS.xls" />
+    <EmbeddedResource Include="TestFiles\gre_research_validity_data.pdf" />
+    <EmbeddedResource Include="TestFiles\HandwashingWithAnanseBookCompressed.pdf" />
+    <EmbeddedResource Include="TestFiles\Lorem Ipsum.docx" />
+    <EmbeddedResource Include="TestFiles\pdf-sample.pdf" />
+    <EmbeddedResource Include="TestFiles\SampleXLSFile_904kb.xls" />
+    <EmbeddedResource Include="TestFiles\tests-example.xls" />
+    <EmbeddedResource Include="TestFiles\version6.doc" />
+    <EmbeddedResource Include="TestFiles\world_bank_data_catalog.xls" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Bogus" Version="32.0.1" />
+    <PackageReference Include="Humanizer" Version="2.8.26" />
+    <PackageReference Include="Microsoft.Data.SqlClient" Version="1.1.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\domain\xperters.domain.csproj" />
+    <ProjectReference Include="..\entities\xperters.entities.csproj" />
+    <ProjectReference Include="..\fileutilities\xperters.fileutilities.csproj" />
+    <ProjectReference Include="..\models\xperters.models.csproj" />
+  </ItemGroup>
+
+</Project>

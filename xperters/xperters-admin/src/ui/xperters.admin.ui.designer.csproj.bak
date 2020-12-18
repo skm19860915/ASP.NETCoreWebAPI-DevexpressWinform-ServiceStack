@@ -1,0 +1,294 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{EBD62304-059D-4689-89A1-1CC0EC5451DE}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>Xperters.Admin.UI</RootNamespace>
+    <AssemblyName>Xperters.Admin.UI</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+    <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'D-No-Nugets|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\D-No-Nugets\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>bin\Debug\Microsoft.Office.Interop.Excel.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Collections.Immutable, Version=1.2.3.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\System.Collections.Immutable.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.Annotations">
+      <HintPath>bin\Debug\System.ComponentModel.Annotations.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Caching" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Text.Json, Version=4.0.1.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\System.Text.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Common\ApplicationState.cs" />
+    <Compile Include="Common\AuthenticationInfo.cs" />
+    <Compile Include="Common\ColumnNameAttribute.cs" />
+    <Compile Include="Common\Constants.cs" />
+    <Compile Include="Common\ContainerOperations.cs" />
+    <Compile Include="Common\Enums.cs" />
+    <Compile Include="Common\EnumTypeAttribute.cs" />
+    <Compile Include="Common\Extensions\BindingListExtensions.cs" />
+    <Compile Include="Common\Extensions\EnumExtensions.cs" />
+    <Compile Include="Common\Extensions\ExceptionExtensions.cs" />
+    <Compile Include="Common\Extensions\GridColumnTagBag.cs" />
+    <Compile Include="Common\Extensions\IEnumerableOfTExtensions.cs" />
+    <Compile Include="Common\Extensions\IViewExtensions.cs" />
+    <Compile Include="Common\Extensions\ListExtensions.cs" />
+    <Compile Include="Common\Extensions\ValidatorExtensions.cs" />
+    <Compile Include="Common\Extensions\VGridControlExtensions.cs" />
+    <Compile Include="Common\Extensions\ViewModelExtensions.cs" />
+    <Compile Include="Common\GlobalAutofacModule.cs" />
+    <Compile Include="Common\GridDefinition\ColumnDefinition.cs" />
+    <Compile Include="Common\GridDefinition\ColumnGroupDefinition.cs" />
+    <Compile Include="Common\GridDefinition\GridDefinitionBuilder.cs" />
+    <Compile Include="Common\GridDefinition\GridElementDefinition.cs" />
+    <Compile Include="Common\GridDefinition\IColumnDefinition.cs" />
+    <Compile Include="Common\GridDefinition\IColumnGroupDefinition.cs" />
+    <Compile Include="Common\GridDefinition\IEnrichableGridView.cs" />
+    <Compile Include="Common\GridDefinition\IGridDefinitionBuilder.cs" />
+    <Compile Include="Common\GridDefinition\IGridElementDefinition.cs" />
+    <Compile Include="Common\Helpers\ClipboardHelper.cs" />
+    <Compile Include="Common\Helpers\ColorFader.cs" />
+    <Compile Include="Common\Helpers\EmptyGridViewTextPlaceholder.cs" />
+    <Compile Include="Common\Helpers\EnumHelper.cs" />
+    <Compile Include="Common\IView.cs" />
+    <Compile Include="Common\LayerProgram\KanbanColumnSort.cs" />
+    <Compile Include="Common\LayerProgram\KanbanViewGroupBy.cs" />
+    <Compile Include="Common\LayerProgram\PaymentGridViewModel.cs" />
+    <Compile Include="Common\LayerProgram\PaymentMappingExtensions.cs" />
+    <Compile Include="Common\LayerProgram\ProgramGridDefinitionBuilder.cs" />
+    <Compile Include="Common\LayerProgram\ProgramValidator.cs" />
+    <Compile Include="Common\LookupItemDto.cs" />
+    <Compile Include="Common\Mediator\BasicMediator.cs" />
+    <Compile Include="Common\Mediator\Events\RefreshPaymentsForApprovalEvent.cs" />
+    <Compile Include="Common\Mediator\IEvent.cs" />
+    <Compile Include="Common\Mediator\IMediator.cs" />
+    <Compile Include="Common\RootViewModel.cs" />
+    <Compile Include="Common\UiException.cs" />
+    <Compile Include="Common\UserSession.cs" />
+    <Compile Include="Common\UserSessionClientService.cs" />
+    <Compile Include="Common\Validators\CustomMappingValidator.cs" />
+    <Compile Include="Common\Validators\Validator.cs" />
+    <Compile Include="Common\ViewModel%28T%29.cs" />
+    <Compile Include="Common\ViewModel.cs" />
+    <Compile Include="Common\XpertersAdminServiceClient.cs" />
+    <Compile Include="Constants.cs" />
+    <Compile Include="FormMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormMain.Designer.cs">
+      <DependentUpon>FormMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="IGridDefinitionBuilderExtensions.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PropertyCopier.cs" />
+    <Compile Include="PropertyCopierIgnoreAttribute.cs" />
+    <Compile Include="Tabs\ErrorWarningTab\ErrorWarning.cs" />
+    <Compile Include="Tabs\ErrorWarningTab\ErrorWarningPresenter.cs" />
+    <Compile Include="Tabs\ErrorWarningTab\ErrorWarningView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Tabs\ErrorWarningTab\ErrorWarningView.Designer.cs">
+      <DependentUpon>ErrorWarningView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Tabs\ErrorWarningTab\Events\ErrorOccurredEvent.cs" />
+    <Compile Include="Tabs\ErrorWarningTab\IErrorWarningView.cs" />
+    <Compile Include="Tabs\JobTab\IJobTabView.cs" />
+    <Compile Include="Tabs\JobTab\JobInformationPresenter.cs" />
+    <Compile Include="Tabs\JobTab\JobInformationViewModel.cs" />
+    <Compile Include="Tabs\JobTab\JobTabView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Tabs\JobTab\JobTabView.Designer.cs">
+      <DependentUpon>JobTabView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Tabs\JobTab\ServiceClient\JobsServiceClient.cs" />
+    <Compile Include="Tabs\MilestoneAdminApprovals\IPaymentAdminApprovalTabView.cs" />
+    <Compile Include="Tabs\MilestoneAdminApprovals\MilestonePaymentViewModel.cs" />
+    <Compile Include="Tabs\MilestoneAdminApprovals\PaymentAdminApprovalPresenter.cs" />
+    <Compile Include="Tabs\MilestoneAdminApprovals\PaymentAdminApprovalTabView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Tabs\MilestoneAdminApprovals\PaymentAdminApprovalTabView.Designer.cs">
+      <DependentUpon>PaymentAdminApprovalTabView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Tabs\MilestoneAdminApprovals\ServiceClient\MilestonesServiceClient.cs" />
+    <Compile Include="Tabs\ServiceInterfaces\IJobsServiceClient.cs" />
+    <Compile Include="Tabs\ServiceInterfaces\IMilestonesServiceClient.cs" />
+    <EmbeddedResource Include="FormMain.resx">
+      <DependentUpon>FormMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\licenses.licx" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Tabs\ErrorWarningTab\ErrorWarningView.resx">
+      <DependentUpon>ErrorWarningView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tabs\JobTab\JobTabView.resx">
+      <DependentUpon>JobTabView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tabs\MilestoneAdminApprovals\PaymentAdminApprovalTabView.resx">
+      <DependentUpon>PaymentAdminApprovalTabView.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Autofac">
+      <Version>5.1.0</Version>
+    </PackageReference>
+    <PackageReference Include="Autofac.Extras.DynamicProxy">
+      <Version>5.0.0</Version>
+    </PackageReference>
+    <PackageReference Include="DevExpress.Win">
+      <Version>20.2.3</Version>
+    </PackageReference>
+    <PackageReference Include="FluentValidation">
+      <Version>8.6.2</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.IdentityModel.Clients.ActiveDirectory">
+      <Version>5.2.8</Version>
+    </PackageReference>
+    <PackageReference Include="Polly">
+      <Version>5.9.0</Version>
+    </PackageReference>
+    <PackageReference Include="Polly.Caching.MemoryCache">
+      <Version>1.1.0</Version>
+    </PackageReference>
+    <PackageReference Include="reactiveui-winforms">
+      <Version>7.4.0</Version>
+    </PackageReference>
+    <PackageReference Include="Serilog.Enrichers.Environment">
+      <Version>2.1.3</Version>
+    </PackageReference>
+    <PackageReference Include="Serilog.Enrichers.Process">
+      <Version>2.0.1</Version>
+    </PackageReference>
+    <PackageReference Include="Serilog.Settings.AppSettings">
+      <Version>2.2.2</Version>
+    </PackageReference>
+    <PackageReference Include="ServiceStack.Client.Core">
+      <Version>5.9.2</Version>
+    </PackageReference>
+    <PackageReference Include="ServiceStack.MsgPack.Core">
+      <Version>5.9.2</Version>
+    </PackageReference>
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt">
+      <Version>6.5.1</Version>
+    </PackageReference>
+    <PackageReference Include="xperters.domain" Condition=" '$(Configuration)' != 'D-No-Nugets' ">
+      <Version>2020.10.29.1</Version>
+    </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\xperters-libraries\src\domain\xperters.domain.csproj" Condition=" '$(Configuration)' == 'D-No-Nugets' ">
+      <Project>{a0582b02-b2f3-4fdc-8c5f-4ff9e41e869d}</Project>
+      <Name>xperters.domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\libraries\authentication\Native\Xperters.Authentication.Native.csproj">
+      <Project>{8ef21dc4-07c1-4478-8e7d-3fc00930d334}</Project>
+      <Name>Xperters.Authentication.Native</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\libraries\core\Xperters.Core.csproj">
+      <Project>{ced82a2d-17e8-47ef-9932-6282e3cb0055}</Project>
+      <Name>Xperters.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\libraries\serilog\Xperters.Serilog.csproj">
+      <Project>{2e7aeec6-5e54-4d8f-9881-17081294a8dc}</Project>
+      <Name>Xperters.Serilog</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ServiceModel\Xperters.Admin.ServiceModel.csproj">
+      <Project>{8893e342-50c4-41c4-8983-55c664587440}</Project>
+      <Name>Xperters.Admin.ServiceModel</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="netstandard" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

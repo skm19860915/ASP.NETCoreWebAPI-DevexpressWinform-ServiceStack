@@ -1,0 +1,32 @@
+jobs:
+  - job: BuildDB
+    displayName: Build EF tools
+    pool:
+      name: Windows
+    steps:
+      - checkout: self
+      - task: DotNetCoreCLI@2
+        displayName: restore
+        inputs:
+          command: restore
+          feedsToUse: config
+          projects: src/tools/Xperters.DBMigrator/Xperters.DBMigrator.csproj
+          nugetConfigPath: src/tools/nuget.config
+          verbosityRestore: Normal
+
+      - task: DotNetCoreCLI@2
+        displayName: publish
+        inputs:
+          command: publish
+          publishWebProjects: false
+          projects: src/tools/Xperters.DBMigrator/Xperters.DBMigrator.csproj
+          arguments: "--output $(build.artifactstagingdirectory) --no-restore"
+          zipAfterPublish: true
+          modifyOutputPath: false
+
+      - task: PublishPipelineArtifact@1
+        displayName: Publish Artifact
+        inputs:
+          targetPath: "$(build.artifactstagingdirectory)"
+          ArtifactName: XpertersEF
+        condition: succeededOrFailed()

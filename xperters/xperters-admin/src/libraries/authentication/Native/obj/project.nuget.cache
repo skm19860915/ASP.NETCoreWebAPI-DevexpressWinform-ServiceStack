@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "vorpObc3aqswOL4BHHhq3vKkaep/uEhPUQv2t4GNoqOCuBk0ILHKenTP0zi4Z8LNLq82zh69cLX5iZz6ujf61w==",
+  "success": true,
+  "projectFilePath": "G:\\xperters\\xperters-admin\\src\\libraries\\authentication\\Native\\Xperters.Authentication.Native.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Administrator\\.nuget\\packages\\microsoft.identitymodel.clients.activedirectory\\4.4.2\\microsoft.identitymodel.clients.activedirectory.4.4.2.nupkg.sha512"
+  ],
+  "logs": []
+}

@@ -1,0 +1,41 @@
+parameters:
+  application: ''
+  resourceGroup: ''
+  buildId: ''
+  appServiceName: ''
+  mockConnection: ''
+  mockUserData: ''
+  instanceLocations: []
+  websiteAddress: ''
+  storageConnectionString: ''
+  storageBaseUrl: ''
+  environment: ''
+  subscription: ''
+
+jobs:
+- deployment: deploydb
+  displayName: update database
+  pool: 
+    name: Windows
+  variables:
+    - name: accesstoken
+      value: $(System.AccessToken)
+    - name: databaseConnectionStringDeploy
+      value: Server=tcp:$(sqlservername).database.windows.net,1433;Initial Catalog=$(sqlDatabaseName);Persist Security Info=False;User ID=$(sqldeployuser);Password=$(sqldeploypwd);MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;;Column Encryption Setting=Enabled;;Application Name=xperters-web-deploy
+    - group: ${{parameters.application}}-${{parameters.environment}}
+  environment: ${{parameters.environment}}
+  strategy:
+    runOnce:
+      deploy:
+        steps:
+        - template: job-database.yml
+          parameters:
+            resourceGroup: ${{parameters.application}}-${{parameters.environment}}
+            accesstoken: $(accesstoken)
+            databaseConnectionString: ${{variables.databaseConnectionStringDeploy}}
+            mockConnection: ${{parameters.mockConnection}}
+            mockUserData: ${{parameters.mockUserData}}
+            storageConnectionString: ${{parameters.storageConnectionString}}
+            storageBaseUrl: https://${{parameters.application}}${{parameters.environment}}.blob.core.windows.net/
+            sqlservername: ${{parameters.sqlservername}}
+            environment: ${{parameters.environment}}

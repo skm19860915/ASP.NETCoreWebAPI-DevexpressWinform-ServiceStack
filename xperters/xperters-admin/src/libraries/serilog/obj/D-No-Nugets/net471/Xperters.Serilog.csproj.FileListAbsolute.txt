@@ -1,0 +1,12 @@
+G:\xperters\xperters-admin\src\libraries\serilog\bin\D-No-Nugets\net471\Xperters.Serilog.dll
+G:\xperters\xperters-admin\src\libraries\serilog\bin\D-No-Nugets\net471\Xperters.Serilog.pdb
+G:\xperters\xperters-admin\src\libraries\serilog\bin\D-No-Nugets\net471\Serilog.dll
+G:\xperters\xperters-admin\src\libraries\serilog\bin\D-No-Nugets\net471\Xperters.Core.dll
+G:\xperters\xperters-admin\src\libraries\serilog\bin\D-No-Nugets\net471\Xperters.Core.pdb
+G:\xperters\xperters-admin\src\libraries\serilog\obj\D-No-Nugets\net471\Xperters.Serilog.csprojAssemblyReference.cache
+G:\xperters\xperters-admin\src\libraries\serilog\obj\D-No-Nugets\net471\Xperters.Serilog.AssemblyInfoInputs.cache
+G:\xperters\xperters-admin\src\libraries\serilog\obj\D-No-Nugets\net471\Xperters.Serilog.AssemblyInfo.cs
+G:\xperters\xperters-admin\src\libraries\serilog\obj\D-No-Nugets\net471\Xperters.Serilog.csproj.CoreCompileInputs.cache
+G:\xperters\xperters-admin\src\libraries\serilog\obj\D-No-Nugets\net471\Xperters.Serilog.csproj.CopyComplete
+G:\xperters\xperters-admin\src\libraries\serilog\obj\D-No-Nugets\net471\Xperters.Serilog.dll
+G:\xperters\xperters-admin\src\libraries\serilog\obj\D-No-Nugets\net471\Xperters.Serilog.pdb

@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>Xperters.Authentication</id>
+    <version>1.0.0</version>
+    <authors>Xperters.Authentication</authors>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Contains classes that aid to Authenticate users from Web applications including ASP.NET Core and ServiceStack</description>
+    <dependencies>
+      <group targetFramework=".NETCoreApp3.0">
+        <dependency id="Microsoft.AspNetCore.Authentication.OpenIdConnect" version="3.0.0" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.IdentityModel.Clients.ActiveDirectory" version="4.4.2" exclude="Build,Analyzers" />
+        <dependency id="Newtonsoft.Json" version="11.0.2" exclude="Build,Analyzers" />
+        <dependency id="ServiceStack" version="5.9.2" exclude="Build,Analyzers" />
+        <dependency id="ServiceStack.Client" version="5.9.2" exclude="Build,Analyzers" />
+      </group>
+      <group targetFramework=".NETCoreApp3.1">
+        <dependency id="Microsoft.AspNetCore.Authentication.OpenIdConnect" version="3.0.0" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.IdentityModel.Clients.ActiveDirectory" version="4.4.2" exclude="Build,Analyzers" />
+        <dependency id="Newtonsoft.Json" version="11.0.2" exclude="Build,Analyzers" />
+        <dependency id="ServiceStack" version="5.9.2" exclude="Build,Analyzers" />
+        <dependency id="ServiceStack.Client" version="5.9.2" exclude="Build,Analyzers" />
+      </group>
+      <group targetFramework=".NETStandard2.0">
+        <dependency id="Microsoft.AspNetCore.Authentication.OpenIdConnect" version="2.1.1" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.IdentityModel.Clients.ActiveDirectory" version="4.4.2" exclude="Build,Analyzers" />
+        <dependency id="Newtonsoft.Json" version="11.0.2" exclude="Build,Analyzers" />
+        <dependency id="ServiceStack" version="5.9.2" exclude="Build,Analyzers" />
+        <dependency id="ServiceStack.Client" version="5.9.2" exclude="Build,Analyzers" />
+      </group>
+    </dependencies>
+    <frameworkReferences>
+      <group targetFramework=".NETCoreApp3.0">
+        <frameworkReference name="Microsoft.AspNetCore.App" />
+      </group>
+      <group targetFramework=".NETCoreApp3.1">
+        <frameworkReference name="Microsoft.AspNetCore.App" />
+      </group>
+    </frameworkReferences>
+  </metadata>
+  <files>
+    <file src="G:\xperters\xperters-admin\src\libraries\authentication\Authentication\bin\D-No-Nugets\netcoreapp3.0\Xperters.Authentication.dll" target="lib\netcoreapp3.0\Xperters.Authentication.dll" />
+    <file src="G:\xperters\xperters-admin\src\libraries\authentication\Authentication\bin\D-No-Nugets\netcoreapp3.1\Xperters.Authentication.dll" target="lib\netcoreapp3.1\Xperters.Authentication.dll" />
+    <file src="G:\xperters\xperters-admin\src\libraries\authentication\Authentication\bin\D-No-Nugets\netstandard2.0\Xperters.Authentication.dll" target="lib\netstandard2.0\Xperters.Authentication.dll" />
+  </files>
+</package>

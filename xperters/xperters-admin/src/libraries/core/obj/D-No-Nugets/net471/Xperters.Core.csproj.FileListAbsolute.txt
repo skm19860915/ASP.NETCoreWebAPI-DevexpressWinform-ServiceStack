@@ -1,0 +1,7 @@
+G:\xperters\xperters-admin\src\libraries\core\bin\D-No-Nugets\net471\Xperters.Core.dll
+G:\xperters\xperters-admin\src\libraries\core\bin\D-No-Nugets\net471\Xperters.Core.pdb
+G:\xperters\xperters-admin\src\libraries\core\obj\D-No-Nugets\net471\Xperters.Core.AssemblyInfoInputs.cache
+G:\xperters\xperters-admin\src\libraries\core\obj\D-No-Nugets\net471\Xperters.Core.AssemblyInfo.cs
+G:\xperters\xperters-admin\src\libraries\core\obj\D-No-Nugets\net471\Xperters.Core.csproj.CoreCompileInputs.cache
+G:\xperters\xperters-admin\src\libraries\core\obj\D-No-Nugets\net471\Xperters.Core.dll
+G:\xperters\xperters-admin\src\libraries\core\obj\D-No-Nugets\net471\Xperters.Core.pdb

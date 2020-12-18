@@ -1,0 +1,39 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFrameworks>netstandard2.0;net472</TargetFrameworks>
+    <Configurations>Debug;Release;D-No-Nugets</Configurations>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(TargetFramework)' == 'netstandard2.0'">
+    <DefineConstants>NETCORE;NETSTANDARD;NETSTANDARD2_0</DefineConstants>
+  </PropertyGroup>
+
+	<ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
+		<PackageReference Include="ServiceStack.Interfaces" Version="5.9.2" />
+	</ItemGroup>
+
+	<ItemGroup Condition="'$(TargetFramework)' == 'net472'">
+		<PackageReference Include="ServiceStack.Interfaces.Core" Version="5.8.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+	    <PackageReference Include="ServiceStack.Interfaces.Core" Version="5.9.2" />
+	    <PackageReference Include="System.ComponentModel.Annotations" Version="4.7.0" />
+	</ItemGroup>
+
+	<ItemGroup Condition="'$(Configuration)' != 'D-No-Nugets'">
+	    <PackageReference Include="xperters.configurations" Version="2020.12.11.1" />
+	    <PackageReference Include="xperters.models" Version="2020.12.11.1" />
+      <PackageReference Include="xperters.domain" Version="2020.12.11.1" />
+	</ItemGroup>
+
+	<ItemGroup Condition="'$(Configuration)'=='D-No-Nugets'">
+	  <ProjectReference Include="..\..\..\xperters-libraries\src\configurations\xperters.configurations.csproj" />
+	  <ProjectReference Include="..\..\..\xperters-libraries\src\domain\xperters.domain.csproj" />
+	  <ProjectReference Include="..\..\..\xperters-libraries\src\models\xperters.models.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="Validations\" />
+	</ItemGroup>
+</Project>

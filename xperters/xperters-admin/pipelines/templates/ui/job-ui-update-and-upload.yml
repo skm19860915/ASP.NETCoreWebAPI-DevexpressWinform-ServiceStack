@@ -1,0 +1,27 @@
+parameters:
+  environment: ''
+  subscription: ''
+
+steps:
+- download: none 
+- task: DownloadPipelineArtifact@2
+  displayName: Download UI artifacts
+  inputs:
+    itemPattern: '**/$(uiZipFileName)'
+    targetPath: $(System.ArtifactsDirectory)
+
+- task: FileTransform@2
+  displayName: Transform XML config file
+  inputs:
+    folderPath: $(System.ArtifactsDirectory)/drop/$(solutionName)/$(uiZipFileName)
+    xmlTransformationRules: '' # this is required - do not remove
+    xmlTargetFiles: '**\Xperters.Admin.UI.exe.config'
+
+- task: AzureFileCopy@4
+  displayName: Copy to $(environment) storage account
+  inputs:
+    SourcePath: $(System.ArtifactsDirectory)/drop/$(solutionName)/$(uiZipFileName)
+    azureSubscription: ${{parameters.subscription}}
+    Destination: AzureBlob
+    storage: $(storageAccountName)
+    ContainerName: admin    

@@ -1,0 +1,25 @@
+FROM mcr.microsoft.com/dotnet/core/sdk:3.1 AS base
+ARG BuildNumber=0.0.1.0
+ARG PAT
+ARG BuildConfiguration
+RUN wget -qO- https://raw.githubusercontent.com/Microsoft/artifacts-credprovider/master/helpers/installcredprovider.sh | bash
+ENV NUGET_CREDENTIALPROVIDER_SESSIONTOKENCACHE_ENABLED true
+ENV VSS_NUGET_EXTERNAL_FEED_ENDPOINTS "{\"endpointCredentials\": [{\"endpoint\":\"https://pkgs.dev.azure.com/mercle/_packaging/xperters/nuget/v3/index.json\", \"password\":\"${PAT}\"}]}"
+
+WORKDIR /app
+
+# Copy the main source project files
+RUN ls -laf .
+COPY xperters-admin xperters-admin
+COPY xperters-libraries xperters-libraries
+
+RUN ls -laf .
+RUN dotnet publish xperters-admin/src/api/xperters.admin.api.csproj -c ${BuildConfiguration} -o /app/out -v n -p:Version=$BuildNumber
+
+## Build runtime image
+FROM mcr.microsoft.com/dotnet/core/aspnet:3.1
+
+WORKDIR /app
+COPY --from=base /app/out .
+
+ENTRYPOINT ["dotnet", "xperters.admin.api.dll"]

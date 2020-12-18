@@ -1,0 +1,9 @@
+G:\xperters\xperters-admin\src\libraries\authentication\Authentication\bin\D-No-Nugets\netcoreapp3.0\Xperters.Authentication.deps.json
+G:\xperters\xperters-admin\src\libraries\authentication\Authentication\bin\D-No-Nugets\netcoreapp3.0\Xperters.Authentication.dll
+G:\xperters\xperters-admin\src\libraries\authentication\Authentication\bin\D-No-Nugets\netcoreapp3.0\Xperters.Authentication.pdb
+G:\xperters\xperters-admin\src\libraries\authentication\Authentication\obj\D-No-Nugets\netcoreapp3.0\Xperters.Authentication.AssemblyInfoInputs.cache
+G:\xperters\xperters-admin\src\libraries\authentication\Authentication\obj\D-No-Nugets\netcoreapp3.0\Xperters.Authentication.AssemblyInfo.cs
+G:\xperters\xperters-admin\src\libraries\authentication\Authentication\obj\D-No-Nugets\netcoreapp3.0\Xperters.Authentication.csproj.CoreCompileInputs.cache
+G:\xperters\xperters-admin\src\libraries\authentication\Authentication\obj\D-No-Nugets\netcoreapp3.0\Xperters.Authentication.dll
+G:\xperters\xperters-admin\src\libraries\authentication\Authentication\obj\D-No-Nugets\netcoreapp3.0\Xperters.Authentication.pdb
+G:\xperters\xperters-admin\src\libraries\authentication\Authentication\obj\D-No-Nugets\netcoreapp3.0\Xperters.Authentication.csprojAssemblyReference.cache

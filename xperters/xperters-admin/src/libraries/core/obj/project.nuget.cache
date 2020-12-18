@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "aKsyrPcBcgjBTH9rX0lTgZKFgxnNFUOFWrUjurZLzhDCFopKRrrbBk0dQsCtgYQOCrN2bfF/M+Oylh344mqH2Q==",
+  "success": true,
+  "projectFilePath": "G:\\xperters\\xperters-admin\\src\\libraries\\core\\Xperters.Core.csproj",
+  "expectedPackageFiles": [
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}

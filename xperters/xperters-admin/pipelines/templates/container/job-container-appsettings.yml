@@ -1,0 +1,151 @@
+parameters:
+  subscription: ''
+  resourcegroup: ''
+  cluster: ''
+  
+steps:
+- checkout: self
+- task: PowerShell@2
+  displayName: Create storage connection string base 64 secret
+  inputs:
+    targetType: filePath
+    filePath: ./pipelines/templates/powershell/CreateBase64Secret.ps1
+    arguments: '-Value "$(storageAccountConnectionString)" -VariableName storageconnectionstringbase64'
+
+- task: PowerShell@2
+  displayName: Create storage base url base 64 secret
+  inputs:
+    targetType: filePath
+    filePath: ./pipelines/templates/powershell/CreateBase64Secret.ps1
+    arguments: '-Value "https://$(storageAccountName).blob.core.windows.net" -VariableName storagebaseurlbase64'
+
+- task: PowerShell@2
+  displayName: Create storage account name base 64 secret
+  inputs:
+    targetType: filePath
+    filePath: ./pipelines/templates/powershell/CreateBase64Secret.ps1
+    arguments: '-Value "$(storageAccountName)" -VariableName storageaccountnamebase64'
+
+- task: PowerShell@2
+  displayName: Convert db connection string base 64 secret
+  inputs:
+    targetType: filePath
+    filePath: ./pipelines/templates/powershell/CreateBase64Secret.ps1
+    arguments: '-Value "$(dbconnectionstring)" -VariableName dbconnectionstringbase64'
+
+- task: PowerShell@2
+  displayName: Create keyvault protection key url base 64 secret
+  inputs:
+    targetType: filePath
+    filePath: ./pipelines/templates/powershell/CreateBase64Secret.ps1
+    arguments: '-Value "https://$(keyvault).vault.azure.net/keys/dataprotection/$(keyversion-dataprotection)" -VariableName keyvaultprotectionkeyurlbase64'
+
+- task: PowerShell@2
+  displayName: Create application insights base 64 secret
+  inputs:
+    targetType: filePath
+    filePath: ./pipelines/templates/powershell/CreateBase64Secret.ps1
+    arguments: '-Value "$(applicationInsightsKey)" -VariableName applicationinsightskeybase64'
+
+- task: PowerShell@2
+  displayName: Create Azure Ad client id sql base 64 secret
+  inputs:
+    targetType: filePath
+    filePath: ./pipelines/templates/powershell/CreateBase64Secret.ps1
+    arguments: '-Value "$(applicationidsql)" -VariableName azureadappregclientidsqlbase64'
+
+- task: PowerShell@2
+  displayName: Create Azure Ad client secret sql base 64 secret
+  inputs:
+    targetType: filePath
+    filePath: ./pipelines/templates/powershell/CreateBase64Secret.ps1
+    arguments: '-Value "$(applicationSecretsql)" -VariableName azureadappregclientsecretsqlbase64'
+
+- task: PowerShell@2
+  displayName: Create Azure Ad tenant id sql base 64 secret
+  inputs:
+    targetType: filePath
+    filePath: ./pipelines/templates/powershell/CreateBase64Secret.ps1
+    arguments: '-Value "$(tenantId)" -VariableName azureadappregtenantidsqlbase64'
+
+- task: PowerShell@2
+  displayName: Create Azure Ad domain base 64 secret
+  inputs:
+    targetType: filePath
+    filePath: ./pipelines/templates/powershell/CreateBase64Secret.ps1
+    arguments: '-Value "mercle.com" -VariableName azureaddomainbase64'
+
+- task: PowerShell@2
+  displayName: Create Azure Ad tenantId 64 secret
+  inputs:
+    targetType: filePath
+    filePath: ./pipelines/templates/powershell/CreateBase64Secret.ps1
+    arguments: '-Value "$(tenantId)" -VariableName azureadtenantidbase64'
+
+- task: PowerShell@2
+  displayName: Create Azure Ad clientId 64 secret
+  inputs:
+    targetType: filePath
+    filePath: ./pipelines/templates/powershell/CreateBase64Secret.ps1
+    arguments: '-Value "$(applicationidadminapi)" -VariableName azureadclientidbase64'
+
+- task: PowerShell@2
+  displayName: Create Azure Ad clientSecret 64 secret
+  inputs:
+    targetType: filePath
+    filePath: ./pipelines/templates/powershell/CreateBase64Secret.ps1
+    arguments: '-Value "$(applicationSecretadminapi)" -VariableName azureadclientsecretbase64'
+
+- task: PowerShell@2
+  displayName: Create Azure Ad group readers 64 secret
+  inputs:
+    targetType: filePath
+    filePath: ./pipelines/templates/powershell/CreateBase64Secret.ps1
+    arguments: '-Value "$(azureAdRolesReaders)" -VariableName azureadgroupsreadersbase64'
+
+- task: PowerShell@2
+  displayName: Create Azure Ad group writers 64 secret
+  inputs:
+    targetType: filePath
+    filePath: ./pipelines/templates/powershell/CreateBase64Secret.ps1
+    arguments: '-Value "$(azureAdRolesWriters)" -VariableName azureadgroupswritersbase64'
+
+- task: PowerShell@2
+  displayName: Create Azure Ad group admins 64 secret
+  inputs:
+    targetType: filePath
+    filePath: ./pipelines/templates/powershell/CreateBase64Secret.ps1
+    arguments: '-Value "$(azureAdRolesAdmins)" -VariableName azureadgroupsadminsbase64'
+
+- task: PowerShell@2
+  displayName: Create Azure Ad admin api resource 64 secret
+  inputs:
+    targetType: filePath
+    filePath: ./pipelines/templates/powershell/CreateBase64Secret.ps1
+    arguments: '-Value "$(applicationResource)" -VariableName applicationresourcebase64'
+
+- task: qetza.replacetokens.replacetokens-task.replacetokens@3
+  displayName: 'Replace tokens in appsettings yml file'
+  inputs:
+    rootDirectory: $(System.DefaultWorkingDirectory)/aks/
+    targetFiles: '**/appsettings.yml'
+    escapeType: none
+    tokenPrefix: '__'
+    tokenSuffix: '__'              
+
+- task: KubectlInstaller@0
+  displayName: Install Kubectl
+  inputs:
+    kubectlVersion: $(kubectlversion)
+
+- task: Kubernetes@1
+  displayName: Apply appsettings
+  inputs:
+    connectionType: Azure Resource Manager
+    azureSubscriptionEndpoint: ${{parameters.subscription}}
+    azureResourceGroup: ${{parameters.resourcegroup}}
+    kubernetesCluster: ${{parameters.cluster}}
+    command: apply
+    useConfigurationFile: true
+    configuration: $(System.DefaultWorkingDirectory)/aks/appsettings.yml
+    versionSpec: $(kubectlversion)

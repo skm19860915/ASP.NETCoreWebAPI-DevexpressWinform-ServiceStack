@@ -1,0 +1,83 @@
+jobs:
+- job: Build
+  displayName: Build
+  dependsOn: ChangeBuildNumber
+  pool: 
+    name: $(vstsPool)
+  steps:
+  - checkout: self
+  - checkout: libraries
+
+  - task: DotNetCoreCLI@2
+    displayName: restore libraries
+    inputs:
+      command: restore
+      feedsToUse: config      
+      projects: xperters-libraries/src/xperters-libraries.sln
+      nugetConfigPath: xperters-libraries/src/nuget.config
+      verbosityRestore: Normal
+
+  - task: DotNetCoreCLI@2
+    displayName: build libraries
+    inputs:
+      command: build
+      publishWebProjects: false
+      projects: xperters-libraries/src/xperters-libraries.sln
+      arguments: '-c $(BuildConfiguration) --no-restore'
+      modifyOutputPath: false
+
+  - task: NuGetToolInstaller@0
+    displayName: Use NuGet 5.8.0
+    inputs:
+      versionSpec: 5.8.0
+
+  - task: NuGetCommand@2
+    displayName: Restore
+    inputs:
+      restoreSolution: $(solution)
+      feedsToUse: config
+      nugetConfigPath: xperters-admin/src/nuget.config
+      verbosityRestore: Normal
+
+  - task: VSBuild@1
+    displayName: Build
+    inputs:
+      solution: xperters-admin/src/ui/xperters.admin.ui.csproj
+      platform: AnyCpu
+      configuration: $(BuildConfiguration)
+
+  - task: PowerShell@2
+    displayName: Remove any old zip files
+    inputs:
+      targetType: 'inline'
+      script: |
+          $fileNames = "$(Build.ArtifactStagingDirectory)/$(solutionName)/$(solutionName)-*.zip"
+          if (Test-Path $fileNames) {
+              Remove-Item $fileNames;
+              Write-Host "Removing $fileNames";
+          }
+
+  - task: VSTest@2
+    displayName: Run Unit Tests
+    inputs:
+      testAssemblyVer2: |
+        **\Xperters.Admin.UnitTests.dll
+        !**\*TestAdapter.dll
+        !**\obj\**
+      platform: $(BuildPlatform)
+      configuration: $(BuildConfiguration)
+      diagnosticsEnabled: True
+
+  - task: ArchiveFiles@2
+    displayName: Create UI zip file
+    inputs:
+      rootFolderOrFile: 'xperters-admin\src\UI\bin\$(BuildConfiguration)\'
+      includeRootFolder: false
+      archiveType: zip
+      archiveFile: '$(Build.ArtifactStagingDirectory)/$(solutionName)/$(uiZipFileName)'
+      replaceExistingArchive: true
+
+  - task: PublishBuildArtifacts@1
+    displayName: Publish Artifact
+    inputs:
+      PathtoPublish: '$(build.artifactstagingdirectory)'

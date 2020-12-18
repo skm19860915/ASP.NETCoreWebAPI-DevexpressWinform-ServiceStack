@@ -1,0 +1,175 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    deployment.kubernetes.io/revision: "1"
+  generation: 1
+  labels:
+    app: xperters-admin-api
+  name: xperters-admin-api
+  namespace: xperters
+spec:
+  progressDeadlineSeconds: 600
+  replicas: 2
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      app: xperters-admin-api
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: xperters-admin-api
+    spec:
+      containers:
+      - image: mercle.azurecr.io/xperters-admin-api:#{tagBuildId}#
+        imagePullPolicy: IfNotPresent
+        name: xperters-admin-api
+        resources:
+          requests:
+            memory: "100Mi"
+            cpu: "200m"
+          limits:
+            memory: "400Mi"
+            cpu: "500m"
+        env:
+        - name: "ASPNETCORE_ENVIRONMENT"
+          value: "Kubernetes"
+
+        - name: Storage__StorageConnectionString
+          valueFrom:
+            secretKeyRef:
+              name: xpertersadminapisettings
+              key: storageconnectionstring
+
+        - name: Storage__BaseUrl
+          valueFrom:
+            secretKeyRef:
+              name: xpertersadminapisettings
+              key: storagebaseurl
+
+        - name: Storage__AccountName
+          valueFrom:
+            secretKeyRef:
+              name: xpertersadminapisettings
+              key: storageaccountname
+
+        - name: KeyVault__ProtectionKeyUrl
+          valueFrom:
+            secretKeyRef:
+              name: xpertersadminapisettings
+              key: keyvaultprotectionkeyurl
+
+        - name: Database__DatabaseConnectionString
+          valueFrom:
+            secretKeyRef:
+              name: xpertersadminapisettings
+              key: dbconnectionstring
+
+        - name: ApplicationInsights__InstrumentationKey
+          valueFrom:
+            secretKeyRef:
+              name: xpertersadminapisettings
+              key: applicationinsightskey
+
+        - name: Authentication__AzureAdAppReg__ClientIdSql
+          valueFrom:
+            secretKeyRef:
+              name: xpertersadminapisettings
+              key: azureadappregclientidsql
+
+        - name: Authentication__AzureAdAppReg__ClientSecretSql
+          valueFrom:
+            secretKeyRef:
+              name: xpertersadminapisettings
+              key: azureadappregclientsecretsql
+
+        - name: Authentication__AzureAdAppReg__TenantIdSql
+          valueFrom:
+            secretKeyRef:
+              name: xpertersadminapisettings
+              key: azureadappregtenantidsql
+
+        - name: AzureAd__Domain
+          valueFrom:
+            secretKeyRef:
+              name: xpertersadminapisettings
+              key: azureaddomain
+
+        - name: AzureAd__TenantId
+          valueFrom:
+            secretKeyRef:
+              name: xpertersadminapisettings
+              key: azureadtenantid
+
+        - name: AzureAd__ClientId
+          valueFrom:
+            secretKeyRef:
+              name: xpertersadminapisettings
+              key: azureadclientid
+
+        - name: AzureAd__ClientSecret
+          valueFrom:
+            secretKeyRef:
+              name: xpertersadminapisettings
+              key: azureadclientsecret
+
+        - name: AzureAd__Resource
+          valueFrom:
+            secretKeyRef:
+              name: xpertersadminapisettings
+              key: applicationresource
+
+        - name: Authentication__AzureAd__Domain
+          valueFrom:
+            secretKeyRef:
+              name: xpertersadminapisettings
+              key: azureaddomain
+
+        - name: Authentication__AzureAd__TenantId
+          valueFrom:
+            secretKeyRef:
+              name: xpertersadminapisettings
+              key: azureadtenantid
+
+        - name: Authentication__AzureAd__ClientId
+          valueFrom:
+            secretKeyRef:
+              name: xpertersadminapisettings
+              key: azureadclientid
+
+        - name: Authentication__AzureAd__ClientSecret
+          valueFrom:
+            secretKeyRef:
+              name: xpertersadminapisettings
+              key: azureadclientsecret
+
+        - name: Authentication__AzureAd__Groups__Readers
+          valueFrom:
+            secretKeyRef:
+              name: xpertersadminapisettings
+              key: azureadgroupsreaders
+
+        - name: Authentication__AzureAd__Groups__Writers
+          valueFrom:
+            secretKeyRef:
+              name: xpertersadminapisettings
+              key: azureadgroupswriters
+
+        - name: Authentication__AzureAd__Groups__Admins
+          valueFrom:
+            secretKeyRef:
+              name: xpertersadminapisettings
+              key: azureadgroupsadmins
+
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+      imagePullSecrets:
+      - name: acr-auth

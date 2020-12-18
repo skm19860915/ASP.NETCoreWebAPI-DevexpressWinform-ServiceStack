@@ -1,0 +1,67 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+	<PropertyGroup>
+		<TargetFramework>netcoreapp3.1</TargetFramework>
+		<AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
+		<Configurations>Debug;Release;D-No-Nugets</Configurations>
+		<DockerComposeProjectPath>..\docker-compose.dcproj</DockerComposeProjectPath>
+		<UserSecretsId>398234a7-1d17-40b1-a034-fec992d5bac1</UserSecretsId>
+		<DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="AutoMapper" Version="8.1.1" />
+		<PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="6.1.1" />
+		<PackageReference Include="Microsoft.ApplicationInsights" Version="2.15.0" />
+		<PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.15.0" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.3" />
+		<PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.10.9" />
+		<PackageReference Include="Serilog.AspNetCore" Version="3.2.0" />
+		<PackageReference Include="Serilog.Settings.AppSettings" Version="2.2.2" />
+		<PackageReference Include="Serilog.Settings.Configuration" Version="3.2.0-dev-00239" />
+		<PackageReference Include="Serilog.Enrichers.Environment" Version="2.1.3" />
+		<PackageReference Include="Serilog.Enrichers.Process" Version="2.0.2-dev-00731" />
+		<PackageReference Include="Serilog.Extensions.Logging" Version="3.0.2-dev-10281" />
+		<PackageReference Include="Serilog.Sinks.ApplicationInsights" Version="3.1.0" />
+		<PackageReference Include="Serilog.Sinks.RollingFile" Version="3.2.0" />
+		<PackageReference Include="Serilog.Enrichers.Demystify" Version="1.0.0-dev-00019" />
+		<PackageReference Include="Serilog.Sinks.ColoredConsole" Version="3.0.1" />	
+		<PackageReference Include="ServiceStack" Version="5.9.2" />
+		<PackageReference Include="ServiceStack.Logging.Serilog" Version="5.9.2" />
+		<PackageReference Include="ServiceStack.Server" Version="5.9.2" />
+		<PackageReference Include="ServiceStack.OrmLite.SqlServer" Version="5.9.2" />
+		<PackageReference Include="ServiceStack.Api.OpenApi" Version="5.9.2" />
+		<PackageReference Include="ServiceStack.MsgPack" Version="5.9.2" />
+		<PackageReference Include="ServiceStack.Quartz" Version="5.8.0" />
+		<PackageReference Include="AspNetCore.HealthChecks.Publisher.ApplicationInsights" Version="3.1.1" />
+		<PackageReference Include="AspNetCore.HealthChecks.SqlServer" Version="3.1.1" />
+		<PackageReference Include="AspNetCore.HealthChecks.UI" Version="2.2.35" />
+	</ItemGroup>
+
+	<ItemGroup Condition="'$(Configuration)'=='D-No-Nugets'">
+    <ProjectReference Include="..\..\..\xperters-libraries\src\azuread\xperters.azuread.csproj" />
+	  <ProjectReference Include="..\..\..\xperters-libraries\src\configurations\xperters.configurations.csproj" />
+	  <ProjectReference Include="..\..\..\xperters-libraries\src\infrastructure\xperters.infrastructure.csproj" />
+    <ProjectReference Include="..\..\..\xperters-libraries\src\queues\xperters.queues.csproj" />
+    <ProjectReference Include="..\..\..\xperters-libraries\src\fileio\xperters.fileio.csproj" />
+  </ItemGroup>
+
+	<ItemGroup Condition="'$(Configuration)' != 'D-No-Nugets'">
+		<PackageReference Include="xperters.azuread" Version="2020.12.11.1" />
+		<PackageReference Include="xperters.configurations" Version="2020.12.11.1" />
+		<PackageReference Include="xperters.infrastructure" Version="2020.12.11.1" />
+		<PackageReference Include="xperters.queues" Version="2020.12.11.1" />
+		<PackageReference Include="xperters.fileio" Version="2020.12.11.1" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\libraries\authentication\Authentication\Xperters.Authentication.csproj" />
+		<ProjectReference Include="..\libraries\correlationid\xperters.correlationid.csproj" />
+		<ProjectReference Include="..\ServiceInterface\Xperters.Admin.ServiceInterface.csproj" />
+		<ProjectReference Include="..\ServiceModel\Xperters.Admin.ServiceModel.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Folder Include="wwwroot\" />
+	</ItemGroup>
+</Project>

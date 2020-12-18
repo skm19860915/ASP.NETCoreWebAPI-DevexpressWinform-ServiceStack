@@ -1,0 +1,9 @@
+G:\xperters\xperters-admin\src\libraries\correlationid\bin\D-No-Nugets\netstandard2.0\xperters.correlationid.deps.json
+G:\xperters\xperters-admin\src\libraries\correlationid\bin\D-No-Nugets\netstandard2.0\xperters.correlationid.dll
+G:\xperters\xperters-admin\src\libraries\correlationid\bin\D-No-Nugets\netstandard2.0\xperters.correlationid.pdb
+G:\xperters\xperters-admin\src\libraries\correlationid\obj\D-No-Nugets\netstandard2.0\xperters.correlationid.AssemblyInfoInputs.cache
+G:\xperters\xperters-admin\src\libraries\correlationid\obj\D-No-Nugets\netstandard2.0\xperters.correlationid.AssemblyInfo.cs
+G:\xperters\xperters-admin\src\libraries\correlationid\obj\D-No-Nugets\netstandard2.0\xperters.correlationid.csproj.CoreCompileInputs.cache
+G:\xperters\xperters-admin\src\libraries\correlationid\obj\D-No-Nugets\netstandard2.0\xperters.correlationid.dll
+G:\xperters\xperters-admin\src\libraries\correlationid\obj\D-No-Nugets\netstandard2.0\xperters.correlationid.pdb
+G:\xperters\xperters-admin\src\libraries\correlationid\obj\D-No-Nugets\netstandard2.0\xperters.correlationid.csprojAssemblyReference.cache

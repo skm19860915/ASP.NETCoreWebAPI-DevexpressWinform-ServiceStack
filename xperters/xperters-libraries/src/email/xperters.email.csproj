@@ -1,0 +1,34 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <!--Runtime compilation off by default, the 3.0 SDK avoids copying references to the 
+    build output that is needed for runtime compilation. 
+    To turn this back on, set these properties in your project file-->
+    <PreserveCompilationReferences>true</PreserveCompilationReferences>
+    <PreserveCompilationContext>true</PreserveCompilationContext>
+    <Configurations>Debug;Release;D-No-Nugets</Configurations>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='D-No-Nugets|AnyCPU'">
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="RazorLight" Version="2.0.0-alpha3" />
+    <PackageReference Include="sendgrid" Version="9.12.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\configurations\xperters.configurations.csproj" />
+    <ProjectReference Include="..\models\xperters.models.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Templates\SubmitBidTemplate.cshtml" />
+  <EmbeddedResource Include="Templates\AcceptBidTemplate.cshtml" />
+  <EmbeddedResource Include="Templates\BidNegotiateTemplate.cshtml" />
+    <EmbeddedResource Include="Templates\CompleteMilestoneTemplate.cshtml" />
+    
+  <EmbeddedResource Include="Templates\CompleteAllMilestonesTemplate.cshtml" />
+  </ItemGroup>
+
+</Project>

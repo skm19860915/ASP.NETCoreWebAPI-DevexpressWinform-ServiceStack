@@ -1,0 +1,16 @@
+version: '3.4'
+
+services:
+  xperters.admin.api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Docker
+      - ASPNETCORE_URLS=https://+:443;http://+:80
+      - ASPNETCORE_HTTPS_PORT=44328
+      - ASPNETCORE__Kestrel__Certificates__Default__Path=/root/.aspnet/https/xperters.admin.api.pfx 
+      - ASPNETCORE__Kestrel__Certificates__Default__Password=bfbeac1e-4105-4b0e-bc16-abbb18ccd143
+    ports:
+      - "80"
+      - "443"
+    volumes:
+      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
+      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro

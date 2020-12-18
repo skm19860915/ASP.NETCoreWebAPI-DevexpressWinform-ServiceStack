@@ -1,0 +1,93 @@
+name: $(Year:yyyy).$(Month).$(DayOfMonth)$(Rev:.r)
+trigger:
+  - feature/*
+  - bugfix/*
+  - master
+
+resources:
+  - repo: self
+
+variables:
+  organisation: mercle
+  BuildConfiguration: D-No-Nugets
+  tagBuildId: $(Build.BuildId)
+  tagBuildNumber: "$(Build.BuildNumber)"
+  sourcepath: $(System.DefaultWorkingDirectory)
+  templatesPath: templates
+  webappname: $(webappname0)
+  sqlserver: $(sqlservername)
+  application: xperters
+  runtime: netcoreapp3.1
+  tenantId: e44f8830-b7ca-47c4-bbc3-08c463254b99
+
+stages:
+  - stage: BuildDBOnly
+    displayName: Build
+    jobs:
+      - template: templates/jobs-build-dbonly.yml
+
+  - stage: LOCAL
+    dependsOn: BuildDBOnly
+    variables:
+      - name: environment
+        value: local
+      - name: tenantIdSql
+        value: $(tenantId)
+      - name: subscription
+        value: XPERTERS-VSE
+      - name: mockConnection
+        value: "false"
+      - name: mockUserData
+        value: "true"
+      - group: ${{variables.application}}-${{variables.environment}}
+      - group: mercle-prd
+    jobs:
+      - template: templates/jobs-dbdeploy-only.yml
+        parameters:
+          application: ${{variables.application}}
+          resourceGroup: ${{variables.application}}-${{variables.environment}}
+          buildId: $(Build.BuildId)
+          appServiceName: $(webappname)
+          mockConnection: $(mockConnection)
+          mockUserData: $(mockUserData)
+          instanceLocations: [eastus2]
+          websiteAddress: www-${{variables.environment}}.${{variables.application}}.com
+          storageBaseUrl: https://${{variables.application}}${{variables.environment}}.blob.core.windows.net/
+          environment: ${{variables.environment}}
+          storageConnectionString: $(storageAccountConnectionString)
+          subscription: ${{variables.subscription}}
+          tagBuildId: $(tagBuildId)
+          tagBuildNumber: $(tagBuildNumber)
+
+  - stage: DEV
+    dependsOn: LOCAL
+    variables:
+      - name: environment
+        value: dev
+      - name: tenantIdSql
+        value: $(tenantId)
+      - name: subscription
+        value: XPERTERS-DEV
+      - name: mockConnection
+        value: "false"
+      - name: mockUserData
+        value: "true"
+      - group: ${{variables.application}}-${{variables.environment}}
+      - group: mercle-prd
+    jobs:
+      - template: templates/jobs-dbdeploy-only.yml
+        parameters:
+          application: ${{variables.application}}
+          resourceGroup: ${{variables.application}}-${{variables.environment}}
+          buildId: $(Build.BuildId)
+          appServiceName: $(webappname)
+          mockConnection: $(mockConnection)
+          mockUserData: $(mockUserData)
+          instanceLocations: [eastus2]
+          websiteAddress: www-${{variables.environment}}.${{variables.application}}.com
+          storageBaseUrl: https://${{variables.application}}${{variables.environment}}.blob.core.windows.net/
+          environment: ${{variables.environment}}
+          storageConnectionString: $(storageAccountConnectionString)
+          subscription: ${{variables.subscription}}
+          tagBuildId: $(tagBuildId)
+          tagBuildNumber: $(tagBuildNumber)

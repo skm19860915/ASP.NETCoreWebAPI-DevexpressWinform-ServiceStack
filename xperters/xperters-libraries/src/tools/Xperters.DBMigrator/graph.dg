@@ -1,0 +1,903 @@
+{
+  "format": 1,
+  "restore": {
+    "D:\\azdo\\mercle\\xperters\\xperters-web\\src\\Tools\\Xperters.DBMigrator\\Xperters.DBMigrator.csproj": {},
+    "D:\\azdo\\mercle\\xperters\\xperters-web\\src\\xperters.business\\xperters.business.csproj": {},
+    "D:\\azdo\\mercle\\xperters\\xperters-web\\src\\xperters.configurations\\xperters.configurations.csproj": {},
+    "D:\\azdo\\mercle\\xperters\\xperters-web\\src\\xperters.constants\\xperters.constants.csproj": {},
+    "D:\\azdo\\mercle\\xperters\\xperters-web\\src\\xperters.domain\\xperters.domain.csproj": {},
+    "D:\\azdo\\mercle\\xperters\\xperters-web\\src\\xperters.entities\\xperters.entities.csproj": {},
+    "D:\\azdo\\mercle\\xperters\\xperters-web\\src\\xperters.infrastructure\\xperters.infrastructure.csproj": {},
+    "D:\\azdo\\mercle\\xperters\\xperters-web\\src\\xperters.mockdata\\xperters.mockdata.csproj": {},
+    "D:\\azdo\\mercle\\xperters\\xperters-web\\src\\xperters.models\\xperters.models.csproj": {},
+    "D:\\azdo\\mercle\\xperters\\xperters-web\\src\\xperters.repositories\\xperters.repositories.csproj": {},
+    "D:\\azdo\\mercle\\xperters\\xperters-web\\src\\xperters.utility\\xperters.fileutilities.csproj": {}
+  },
+  "projects": {
+    "D:\\azdo\\mercle\\xperters\\xperters-web\\src\\Tools\\Xperters.DBMigrator\\Xperters.DBMigrator.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\azdo\\mercle\\xperters\\xperters-web\\src\\Tools\\Xperters.DBMigrator\\Xperters.DBMigrator.csproj",
+        "projectName": "Xperters.DBMigrator",
+        "projectPath": "D:\\azdo\\mercle\\xperters\\xperters-web\\src\\Tools\\Xperters.DBMigrator\\Xperters.DBMigrator.csproj",
+        "packagesPath": "C:\\Users\\ossentoogo\\.nuget\\packages\\",
+        "outputPath": "D:\\azdo\\mercle\\xperters\\xperters-web\\src\\Tools\\Xperters.DBMigrator\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "D:\\azdo\\mercle\\xperters\\xperters-web\\src\\Tools\\NuGet.Config",
+          "D:\\azdo\\mercle\\xperters\\xperters-web\\src\\NuGet.Config",
+          "C:\\Users\\ossentoogo\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp2.2"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {},
+          "https://dotnet.myget.org/F/aspnetcore-master/api/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp2.2": {
+            "projectReferences": {
+              "D:\\azdo\\mercle\\xperters\\xperters-web\\src\\xperters.entities\\xperters.entities.csproj": {
+                "projectPath": "D:\\azdo\\mercle\\xperters\\xperters-web\\src\\xperters.entities\\xperters.entities.csproj"
+              },
+              "D:\\azdo\\mercle\\xperters\\xperters-web\\src\\xperters.infrastructure\\xperters.infrastructure.csproj": {
+                "projectPath": "D:\\azdo\\mercle\\xperters\\xperters-web\\src\\xperters.infrastructure\\xperters.infrastructure.csproj"
+              },
+              "D:\\azdo\\mercle\\xperters\\xperters-web\\src\\xperters.mockdata\\xperters.mockdata.csproj": {
+                "projectPath": "D:\\azdo\\mercle\\xperters\\xperters-web\\src\\xperters.mockdata\\xperters.mockdata.csproj"
+              },
+              "D:\\azdo\\mercle\\xperters\\xperters-web\\src\\xperters.utility\\xperters.fileutilities.csproj": {
+                "projectPath": "D:\\azdo\\mercle\\xperters\\xperters-web\\src\\xperters.utility\\xperters.fileutilities.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp2.2": {
+          "dependencies": {
+            "AutoMapper": {
+              "target": "Package",
+              "version": "[8.0.0, )"
+            },
+            "AutoMapper.Extensions.Microsoft.DependencyInjection": {
+              "target": "Package",
+              "version": "[6.0.0, )"
+            },
+            "Microsoft.AspNetCore.Identity": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.Sqlite": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.Extensions.DependencyInjection": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.Extensions.Logging": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.Extensions.Logging.Console": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.NETCore.App": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.2.0, )",
+              "autoReferenced": true
+            }
+          },
+          "imports": [
+            "net461"
+          ],
+          "assetTargetFallback": true,
+          "warn": true
+        }
+      }
+    },
+    "D:\\azdo\\mercle\\xperters\\xperters-web\\src\\xperters.business\\xperters.business.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\azdo\\mercle\\xperters\\xperters-web\\src\\xperters.business\\xperters.business.csproj",
+        "projectName": "xperters.business",
+        "projectPath": "D:\\azdo\\mercle\\xperters\\xperters-web\\src\\xperters.business\\xperters.business.csproj",
+        "packagesPath": "C:\\Users\\ossentoogo\\.nuget\\packages\\",
+        "outputPath": "D:\\azdo\\mercle\\xperters\\xperters-web\\src\\xperters.business\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "D:\\azdo\\mercle\\xperters\\xperters-web\\src\\NuGet.Config",
+          "C:\\Users\\ossentoogo\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netstandard2.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netstandard2.0": {
+            "projectReferences": {
+              "D:\\azdo\\mercle\\xperters\\xperters-web\\src\\xperters.domain\\xperters.domain.csproj": {
+                "projectPath": "D:\\azdo\\mercle\\xperters\\xperters-web\\src\\xperters.domain\\xperters.domain.csproj"
+              },
+              "D:\\azdo\\mercle\\xperters\\xperters-web\\src\\xperters.mockdata\\xperters.mockdata.csproj": {
+                "projectPath": "D:\\azdo\\mercle\\xperters\\xperters-web\\src\\xperters.mockdata\\xperters.mockdata.csproj"
+              },
+              "D:\\azdo\\mercle\\xperters\\xperters-web\\src\\xperters.repositories\\xperters.repositories.csproj": {
+                "projectPath": "D:\\azdo\\mercle\\xperters\\xperters-web\\src\\xperters.repositories\\xperters.repositories.csproj"
+              },
+              "D:\\azdo\\mercle\\xperters\\xperters-web\\src\\xperters.utility\\xperters.fileutilities.csproj": {
+                "projectPath": "D:\\azdo\\mercle\\xperters\\xperters-web\\src\\xperters.utility\\xperters.fileutilities.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netstandard2.0": {
+          "dependencies": {
+            "AutoMapper": {
+              "target": "Package",
+              "version": "[8.0.0, )"
+            },
+            "NETStandard.Library": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.0.3, )",
+              "autoReferenced": true
+            },
+            "Ninject": {
+              "target": "Package",
+              "version": "[3.3.4, )"
+            },
+            "System.ValueTuple": {
+              "target": "Package",
+              "version": "[4.5.0, )"
+            }
+          },
+          "imports": [
+            "net461"
+          ],
+          "assetTargetFallback": true,
+          "warn": true
+        }
+      }
+    },
+    "D:\\azdo\\mercle\\xperters\\xperters-web\\src\\xperters.configurations\\xperters.configurations.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\azdo\\mercle\\xperters\\xperters-web\\src\\xperters.configurations\\xperters.configurations.csproj",
+        "projectName": "xperters.configurations",
+        "projectPath": "D:\\azdo\\mercle\\xperters\\xperters-web\\src\\xperters.configurations\\xperters.configurations.csproj",
+        "packagesPath": "C:\\Users\\ossentoogo\\.nuget\\packages\\",
+        "outputPath": "D:\\azdo\\mercle\\xperters\\xperters-web\\src\\xperters.configurations\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "D:\\azdo\\mercle\\xperters\\xperters-web\\src\\NuGet.Config",
+          "C:\\Users\\ossentoogo\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netstandard2.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netstandard2.0": {
+            "projectReferences": {
+              "D:\\azdo\\mercle\\xperters\\xperters-web\\src\\xperters.constants\\xperters.constants.csproj": {
+                "projectPath": "D:\\azdo\\mercle\\xperters\\xperters-web\\src\\xperters.constants\\xperters.constants.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netstandard2.0": {
+          "dependencies": {
+            "Microsoft.AspNetCore.Authentication.OpenIdConnect": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.AspNetCore.Http": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.Extensions.Configuration": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.Extensions.Configuration.EnvironmentVariables": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.Extensions.Configuration.FileExtensions": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.Extensions.Configuration.Json": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.Extensions.DependencyInjection": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.Extensions.Options": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.Extensions.Options.ConfigurationExtensions": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.Identity.Client": {
+              "target": "Package",
+              "version": "[2.6.2, )"
+            },
+            "NETStandard.Library": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.0.3, )",
+              "autoReferenced": true
+            }
+          },
+          "imports": [
+            "net461"
+          ],
+          "assetTargetFallback": true,
+          "warn": true
+        }
+      }
+    },
+    "D:\\azdo\\mercle\\xperters\\xperters-web\\src\\xperters.constants\\xperters.constants.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\azdo\\mercle\\xperters\\xperters-web\\src\\xperters.constants\\xperters.constants.csproj",
+        "projectName": "xperters.constants",
+        "projectPath": "D:\\azdo\\mercle\\xperters\\xperters-web\\src\\xperters.constants\\xperters.constants.csproj",
+        "packagesPath": "C:\\Users\\ossentoogo\\.nuget\\packages\\",
+        "outputPath": "D:\\azdo\\mercle\\xperters\\xperters-web\\src\\xperters.constants\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "D:\\azdo\\mercle\\xperters\\xperters-web\\src\\NuGet.Config",
+          "C:\\Users\\ossentoogo\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netstandard2.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netstandard2.0": {
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netstandard2.0": {
+          "dependencies": {
+            "NETStandard.Library": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.0.3, )",
+              "autoReferenced": true
+            }
+          },
+          "imports": [
+            "net461"
+          ],
+          "assetTargetFallback": true,
+          "warn": true
+        }
+      }
+    },
+    "D:\\azdo\\mercle\\xperters\\xperters-web\\src\\xperters.domain\\xperters.domain.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\azdo\\mercle\\xperters\\xperters-web\\src\\xperters.domain\\xperters.domain.csproj",
+        "projectName": "xperters.domain",
+        "projectPath": "D:\\azdo\\mercle\\xperters\\xperters-web\\src\\xperters.domain\\xperters.domain.csproj",
+        "packagesPath": "C:\\Users\\ossentoogo\\.nuget\\packages\\",
+        "outputPath": "D:\\azdo\\mercle\\xperters\\xperters-web\\src\\xperters.domain\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "D:\\azdo\\mercle\\xperters\\xperters-web\\src\\NuGet.Config",
+          "C:\\Users\\ossentoogo\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netstandard2.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netstandard2.0": {
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netstandard2.0": {
+          "dependencies": {
+            "NETStandard.Library": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.0.3, )",
+              "autoReferenced": true
+            }
+          },
+          "imports": [
+            "net461"
+          ],
+          "assetTargetFallback": true,
+          "warn": true
+        }
+      }
+    },
+    "D:\\azdo\\mercle\\xperters\\xperters-web\\src\\xperters.entities\\xperters.entities.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\azdo\\mercle\\xperters\\xperters-web\\src\\xperters.entities\\xperters.entities.csproj",
+        "projectName": "xperters.entities",
+        "projectPath": "D:\\azdo\\mercle\\xperters\\xperters-web\\src\\xperters.entities\\xperters.entities.csproj",
+        "packagesPath": "C:\\Users\\ossentoogo\\.nuget\\packages\\",
+        "outputPath": "D:\\azdo\\mercle\\xperters\\xperters-web\\src\\xperters.entities\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "D:\\azdo\\mercle\\xperters\\xperters-web\\src\\NuGet.Config",
+          "C:\\Users\\ossentoogo\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netstandard2.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netstandard2.0": {
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netstandard2.0": {
+          "dependencies": {
+            "AutoMapper": {
+              "target": "Package",
+              "version": "[8.0.0, )"
+            },
+            "Microsoft.AspNetCore.Identity": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "NETStandard.Library": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.0.3, )",
+              "autoReferenced": true
+            }
+          },
+          "imports": [
+            "net461"
+          ],
+          "assetTargetFallback": true,
+          "warn": true
+        }
+      }
+    },
+    "D:\\azdo\\mercle\\xperters\\xperters-web\\src\\xperters.infrastructure\\xperters.infrastructure.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\azdo\\mercle\\xperters\\xperters-web\\src\\xperters.infrastructure\\xperters.infrastructure.csproj",
+        "projectName": "xperters.infrastructure",
+        "projectPath": "D:\\azdo\\mercle\\xperters\\xperters-web\\src\\xperters.infrastructure\\xperters.infrastructure.csproj",
+        "packagesPath": "C:\\Users\\ossentoogo\\.nuget\\packages\\",
+        "outputPath": "D:\\azdo\\mercle\\xperters\\xperters-web\\src\\xperters.infrastructure\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "D:\\azdo\\mercle\\xperters\\xperters-web\\src\\NuGet.Config",
+          "C:\\Users\\ossentoogo\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netstandard2.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netstandard2.0": {
+            "projectReferences": {
+              "D:\\azdo\\mercle\\xperters\\xperters-web\\src\\xperters.business\\xperters.business.csproj": {
+                "projectPath": "D:\\azdo\\mercle\\xperters\\xperters-web\\src\\xperters.business\\xperters.business.csproj"
+              },
+              "D:\\azdo\\mercle\\xperters\\xperters-web\\src\\xperters.configurations\\xperters.configurations.csproj": {
+                "projectPath": "D:\\azdo\\mercle\\xperters\\xperters-web\\src\\xperters.configurations\\xperters.configurations.csproj"
+              },
+              "D:\\azdo\\mercle\\xperters\\xperters-web\\src\\xperters.domain\\xperters.domain.csproj": {
+                "projectPath": "D:\\azdo\\mercle\\xperters\\xperters-web\\src\\xperters.domain\\xperters.domain.csproj"
+              },
+              "D:\\azdo\\mercle\\xperters\\xperters-web\\src\\xperters.entities\\xperters.entities.csproj": {
+                "projectPath": "D:\\azdo\\mercle\\xperters\\xperters-web\\src\\xperters.entities\\xperters.entities.csproj"
+              },
+              "D:\\azdo\\mercle\\xperters\\xperters-web\\src\\xperters.models\\xperters.models.csproj": {
+                "projectPath": "D:\\azdo\\mercle\\xperters\\xperters-web\\src\\xperters.models\\xperters.models.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netstandard2.0": {
+          "dependencies": {
+            "AutoMapper": {
+              "target": "Package",
+              "version": "[8.0.0, )"
+            },
+            "AutoMapper.Extensions.Microsoft.DependencyInjection": {
+              "target": "Package",
+              "version": "[6.0.0, )"
+            },
+            "Microsoft.AspNetCore.CookiePolicy": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.AspNetCore.Diagnostics": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.AspNetCore.HttpsPolicy": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.AspNetCore.Mvc": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.AspNetCore.Mvc.Core": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.AspNetCore.Server.Kestrel.Core": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.AspNetCore.Session": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.AspNetCore.StaticFiles": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.Sqlite.Core": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.Extensions.Configuration": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.Extensions.DependencyInjection": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.Extensions.DependencyInjection.Abstractions": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.Extensions.Options.ConfigurationExtensions": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.Identity.Client": {
+              "target": "Package",
+              "version": "[2.6.2, )"
+            },
+            "NETStandard.Library": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.0.3, )",
+              "autoReferenced": true
+            },
+            "Serilog.Enrichers.Demystify": {
+              "target": "Package",
+              "version": "[0.1.0-dev-00016, )"
+            },
+            "Serilog.Extensions.Logging": {
+              "target": "Package",
+              "version": "[2.0.2, )"
+            },
+            "Serilog.Sinks.File": {
+              "target": "Package",
+              "version": "[4.0.0, )"
+            }
+          },
+          "imports": [
+            "net461"
+          ],
+          "assetTargetFallback": true,
+          "warn": true
+        }
+      }
+    },
+    "D:\\azdo\\mercle\\xperters\\xperters-web\\src\\xperters.mockdata\\xperters.mockdata.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\azdo\\mercle\\xperters\\xperters-web\\src\\xperters.mockdata\\xperters.mockdata.csproj",
+        "projectName": "xperters.mockdata",
+        "projectPath": "D:\\azdo\\mercle\\xperters\\xperters-web\\src\\xperters.mockdata\\xperters.mockdata.csproj",
+        "packagesPath": "C:\\Users\\ossentoogo\\.nuget\\packages\\",
+        "outputPath": "D:\\azdo\\mercle\\xperters\\xperters-web\\src\\xperters.mockdata\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "D:\\azdo\\mercle\\xperters\\xperters-web\\src\\NuGet.Config",
+          "C:\\Users\\ossentoogo\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netstandard2.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netstandard2.0": {
+            "projectReferences": {
+              "D:\\azdo\\mercle\\xperters\\xperters-web\\src\\xperters.domain\\xperters.domain.csproj": {
+                "projectPath": "D:\\azdo\\mercle\\xperters\\xperters-web\\src\\xperters.domain\\xperters.domain.csproj"
+              },
+              "D:\\azdo\\mercle\\xperters\\xperters-web\\src\\xperters.entities\\xperters.entities.csproj": {
+                "projectPath": "D:\\azdo\\mercle\\xperters\\xperters-web\\src\\xperters.entities\\xperters.entities.csproj"
+              },
+              "D:\\azdo\\mercle\\xperters\\xperters-web\\src\\xperters.models\\xperters.models.csproj": {
+                "projectPath": "D:\\azdo\\mercle\\xperters\\xperters-web\\src\\xperters.models\\xperters.models.csproj"
+              },
+              "D:\\azdo\\mercle\\xperters\\xperters-web\\src\\xperters.utility\\xperters.fileutilities.csproj": {
+                "projectPath": "D:\\azdo\\mercle\\xperters\\xperters-web\\src\\xperters.utility\\xperters.fileutilities.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netstandard2.0": {
+          "dependencies": {
+            "NETStandard.Library": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.0.3, )",
+              "autoReferenced": true
+            }
+          },
+          "imports": [
+            "net461"
+          ],
+          "assetTargetFallback": true,
+          "warn": true
+        }
+      }
+    },
+    "D:\\azdo\\mercle\\xperters\\xperters-web\\src\\xperters.models\\xperters.models.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\azdo\\mercle\\xperters\\xperters-web\\src\\xperters.models\\xperters.models.csproj",
+        "projectName": "xperters.models",
+        "projectPath": "D:\\azdo\\mercle\\xperters\\xperters-web\\src\\xperters.models\\xperters.models.csproj",
+        "packagesPath": "C:\\Users\\ossentoogo\\.nuget\\packages\\",
+        "outputPath": "D:\\azdo\\mercle\\xperters\\xperters-web\\src\\xperters.models\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "D:\\azdo\\mercle\\xperters\\xperters-web\\src\\NuGet.Config",
+          "C:\\Users\\ossentoogo\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netstandard2.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netstandard2.0": {
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netstandard2.0": {
+          "dependencies": {
+            "Microsoft.AspNetCore.Http": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.AspNetCore.Http.Extensions": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.Identity.Client": {
+              "target": "Package",
+              "version": "[2.6.2, )"
+            },
+            "NETStandard.Library": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.0.3, )",
+              "autoReferenced": true
+            }
+          },
+          "imports": [
+            "net461"
+          ],
+          "assetTargetFallback": true,
+          "warn": true
+        }
+      }
+    },
+    "D:\\azdo\\mercle\\xperters\\xperters-web\\src\\xperters.repositories\\xperters.repositories.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\azdo\\mercle\\xperters\\xperters-web\\src\\xperters.repositories\\xperters.repositories.csproj",
+        "projectName": "xperters.repositories",
+        "projectPath": "D:\\azdo\\mercle\\xperters\\xperters-web\\src\\xperters.repositories\\xperters.repositories.csproj",
+        "packagesPath": "C:\\Users\\ossentoogo\\.nuget\\packages\\",
+        "outputPath": "D:\\azdo\\mercle\\xperters\\xperters-web\\src\\xperters.repositories\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "D:\\azdo\\mercle\\xperters\\xperters-web\\src\\NuGet.Config",
+          "C:\\Users\\ossentoogo\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netstandard2.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netstandard2.0": {
+            "projectReferences": {
+              "D:\\azdo\\mercle\\xperters\\xperters-web\\src\\xperters.domain\\xperters.domain.csproj": {
+                "projectPath": "D:\\azdo\\mercle\\xperters\\xperters-web\\src\\xperters.domain\\xperters.domain.csproj"
+              },
+              "D:\\azdo\\mercle\\xperters\\xperters-web\\src\\xperters.entities\\xperters.entities.csproj": {
+                "projectPath": "D:\\azdo\\mercle\\xperters\\xperters-web\\src\\xperters.entities\\xperters.entities.csproj"
+              },
+              "D:\\azdo\\mercle\\xperters\\xperters-web\\src\\xperters.mockdata\\xperters.mockdata.csproj": {
+                "projectPath": "D:\\azdo\\mercle\\xperters\\xperters-web\\src\\xperters.mockdata\\xperters.mockdata.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netstandard2.0": {
+          "dependencies": {
+            "AutoMapper": {
+              "target": "Package",
+              "version": "[8.0.0, )"
+            },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "NETStandard.Library": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.0.3, )",
+              "autoReferenced": true
+            }
+          },
+          "imports": [
+            "net461"
+          ],
+          "assetTargetFallback": true,
+          "warn": true
+        }
+      }
+    },
+    "D:\\azdo\\mercle\\xperters\\xperters-web\\src\\xperters.utility\\xperters.fileutilities.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\azdo\\mercle\\xperters\\xperters-web\\src\\xperters.utility\\xperters.fileutilities.csproj",
+        "projectName": "xperters.fileutilities",
+        "projectPath": "D:\\azdo\\mercle\\xperters\\xperters-web\\src\\xperters.utility\\xperters.fileutilities.csproj",
+        "packagesPath": "C:\\Users\\ossentoogo\\.nuget\\packages\\",
+        "outputPath": "D:\\azdo\\mercle\\xperters\\xperters-web\\src\\xperters.utility\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "D:\\azdo\\mercle\\xperters\\xperters-web\\src\\NuGet.Config",
+          "C:\\Users\\ossentoogo\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netstandard2.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netstandard2.0": {
+            "projectReferences": {
+              "D:\\azdo\\mercle\\xperters\\xperters-web\\src\\xperters.configurations\\xperters.configurations.csproj": {
+                "projectPath": "D:\\azdo\\mercle\\xperters\\xperters-web\\src\\xperters.configurations\\xperters.configurations.csproj"
+              },
+              "D:\\azdo\\mercle\\xperters\\xperters-web\\src\\xperters.domain\\xperters.domain.csproj": {
+                "projectPath": "D:\\azdo\\mercle\\xperters\\xperters-web\\src\\xperters.domain\\xperters.domain.csproj"
+              },
+              "D:\\azdo\\mercle\\xperters\\xperters-web\\src\\xperters.entities\\xperters.entities.csproj": {
+                "projectPath": "D:\\azdo\\mercle\\xperters\\xperters-web\\src\\xperters.entities\\xperters.entities.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netstandard2.0": {
+          "dependencies": {
+            "AutoMapper": {
+              "target": "Package",
+              "version": "[8.0.0, )"
+            },
+            "Microsoft.AspNetCore.Http": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.Azure.Storage.Blob": {
+              "target": "Package",
+              "version": "[9.4.1, )"
+            },
+            "Microsoft.Extensions.Configuration": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "NETStandard.Library": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.0.3, )",
+              "autoReferenced": true
+            },
+            "System.Net.Http": {
+              "target": "Package",
+              "version": "[4.3.4, )"
+            }
+          },
+          "imports": [
+            "net461"
+          ],
+          "assetTargetFallback": true,
+          "warn": true
+        }
+      }
+    }
+  }
+}

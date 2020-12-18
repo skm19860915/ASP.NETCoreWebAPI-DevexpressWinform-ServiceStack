@@ -1,0 +1,38 @@
+name: $(Year:yyyy).$(Month).$(DayOfMonth)$(Rev:.r)
+trigger:
+- feature/*
+- bugfix/*
+
+resources:
+  - repo: self    
+
+stages:
+- stage: Build
+  displayName: Build
+  jobs:  
+  - job: UnitTests
+    displayName: Unit tests
+    pool:
+      name: Windows
+    steps:
+    - checkout: self 
+    - task: DotNetCoreCLI@2
+      displayName: Run unit tests
+      inputs:
+        command: test
+        publishWebProjects: false
+        projects: src/Tests/unit.tests/xperters.unit.tests.csproj
+        modifyOutputPath: false        
+  - job: IntegrationTests
+    displayName: Integration tests
+    pool:
+      name: Windows
+    steps:
+    - checkout: self         
+    - task: DotNetCoreCLI@2
+      displayName: Run integration tests
+      inputs:
+        command: test
+        publishWebProjects: false
+        projects: src/Tests/integration.tests/xperters.integration.tests.csproj
+        modifyOutputPath: false
